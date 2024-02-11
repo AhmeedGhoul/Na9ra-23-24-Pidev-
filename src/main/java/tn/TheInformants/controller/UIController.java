@@ -350,7 +350,7 @@ public void Dashboard_btn_clicked(){
         l4.setVisible(false);
         l5.setVisible(false);
         l6.setVisible(false);
-        FXMLLoader fxmlLoader121 = new FXMLLoader(getClass().getResource("/gui/students/DashboardUI.fxml"));
+        FXMLLoader fxmlLoader121 = new FXMLLoader(getClass().getResource("/gui/User/DashboardUI.fxml"));
         try {
             Parent p = (Parent) fxmlLoader121.load();
             midlast.getChildren().clear();
@@ -359,7 +359,7 @@ public void Dashboard_btn_clicked(){
             throw new RuntimeException(ex);
         }
         cours_btn.setOnMouseClicked(e -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/students/CourseUI.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/User/CourseUI.fxml"));
             try {
                 Parent p = (Parent) fxmlLoader.load();
                 midlast.getChildren().clear();
@@ -369,7 +369,7 @@ public void Dashboard_btn_clicked(){
             }
         });
         Dashboard_btn.setOnMouseClicked(e -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/students/DashboardUI.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/User/DashboardUI.fxml"));
             try {
                 Parent p = (Parent) fxmlLoader.load();
                 midlast.getChildren().clear();
@@ -379,7 +379,7 @@ public void Dashboard_btn_clicked(){
             }
         });
         book_btn.setOnMouseClicked(e -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/students/eBookUI.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/User/eBookUI.fxml"));
             try {
                 Parent p = (Parent) fxmlLoader.load();
                 midlast.getChildren().clear();
@@ -389,7 +389,7 @@ public void Dashboard_btn_clicked(){
             }
         });
         evenements_btn.setOnMouseClicked(e -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/students/EvenementUI.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/User/EvenementUI.fxml"));
             try {
                 Parent p = (Parent) fxmlLoader.load();
                 midlast.getChildren().clear();
@@ -399,7 +399,7 @@ public void Dashboard_btn_clicked(){
             }
         });
         test_btn.setOnMouseClicked(e -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/students/TestUI.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/User/TestUI.fxml"));
             try {
                 Parent p = (Parent) fxmlLoader.load();
                 midlast.getChildren().clear();
@@ -409,7 +409,7 @@ public void Dashboard_btn_clicked(){
             }
         });
         quizz_btn.setOnMouseClicked(e -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/students/QuizUI.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/User/QuizUI.fxml"));
             try {
                 Parent p = (Parent) fxmlLoader.load();
                 midlast.getChildren().clear();
