@@ -11,7 +11,8 @@ public class Test {
     private Date temp_pris;
     private Status status;
     private int categorie_id;
-    private  int user_id;
+
+    private int user_id;
     public Test(){}
 
     public Test(String nom_Test, String description, Date temp_pris, Status status, int categorie_id, int user_id) {
