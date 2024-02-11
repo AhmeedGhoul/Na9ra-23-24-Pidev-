@@ -1,18 +1,14 @@
 package tn.TheInformants.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Line;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -69,10 +65,10 @@ public class AIController implements Initializable {
         quizz_btn.setStyle("-fx-background-color: rgba(243, 248, 254, 1);");
         test_btn.setStyle("-fx-background-color: rgba(243, 248, 254, 1);");
         book_btn.setStyle("-fx-background-color: rgba(243, 248, 254, 1);");
-ebooks_label.setStyle("-fx-text-fill: black;");
-quiz_label.setStyle("-fx-text-fill: black;");
-test_label.setStyle("-fx-text-fill: black;");
-Events_label.setStyle("-fx-text-fill: black;");
+        ebooks_label.setStyle("-fx-text-fill: black;");
+        quiz_label.setStyle("-fx-text-fill: black;");
+        test_label.setStyle("-fx-text-fill: black;");
+        Events_label.setStyle("-fx-text-fill: black;");
         Image newImage = new Image(getClass().getResourceAsStream("/gui/resources/dashboard1.png"));
         ImageView imageView = new ImageView(newImage);
         imageView.setFitWidth(24); // Set width according to your requirement
@@ -354,7 +350,7 @@ System.exit(0);
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        FXMLLoader fxmlLoader121 = new FXMLLoader(getClass().getResource("/gui/teachers/DashboardUI.fxml"));
+        FXMLLoader fxmlLoader121 = new FXMLLoader(getClass().getResource("/gui/Admin/DashboardUI.fxml"));
         try {
             Parent p = (Parent) fxmlLoader121.load();
             midlast.getChildren().clear();
@@ -363,7 +359,7 @@ System.exit(0);
             throw new RuntimeException(ex);
         }
         cours_btn.setOnMouseClicked(e -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/teachers/CourseUI.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/Admin/CourseUI.fxml"));
             try {
                 Parent p = (Parent) fxmlLoader.load();
                 midlast.getChildren().clear();
@@ -373,7 +369,7 @@ System.exit(0);
             }
         });
         Dashboard_btn.setOnMouseClicked(e -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/teachers/DashboardUI.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/Admin/DashboardUI.fxml"));
             try {
                 Parent p = (Parent) fxmlLoader.load();
                 midlast.getChildren().clear();
@@ -383,7 +379,7 @@ System.exit(0);
             }
         });
         book_btn.setOnMouseClicked(e -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/teachers/eBookUI.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/Admin/eBookUI.fxml"));
             try {
                 Parent p = (Parent) fxmlLoader.load();
                 midlast.getChildren().clear();
@@ -393,7 +389,7 @@ System.exit(0);
             }
         });
         evenements_btn.setOnMouseClicked(e -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/teachers/EvenementUI.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/Admin/EvenementUI.fxml"));
             try {
                 Parent p = (Parent) fxmlLoader.load();
                 midlast.getChildren().clear();
@@ -403,7 +399,7 @@ System.exit(0);
             }
         });
         test_btn.setOnMouseClicked(e -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/teachers/TestUI.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/Admin/TestUI.fxml"));
             try {
                 Parent p = (Parent) fxmlLoader.load();
                 midlast.getChildren().clear();
@@ -413,7 +409,7 @@ System.exit(0);
             }
         });
         quizz_btn.setOnMouseClicked(e -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/teachers/QuizUI.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/Admin/QuizUI.fxml"));
             try {
                 Parent p = (Parent) fxmlLoader.load();
                 midlast.getChildren().clear();
