@@ -35,7 +35,7 @@
     -fx-arc-width: 50px;
 }
 .middle-menu{
-    -fx-background-color: rgba(246, 245, 251, 0.05); /* Lower opacity */
+    -fx-background-color: rgba(246, 245, 251, 0.5); /* Lower opacity */
 
 }
 .mid-menu2{
@@ -84,6 +84,30 @@
     -fx-stroke-dash-array: 2; /* Dashed grid lines */
     -fx-stroke: #E0E0E0; /* Color of grid lines */
 }
+.aa {
+    -fx-background-radius: 50;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 4, 4);
+    -fx-background-insets: 12;
+    -fx-background-color: white;
+}
+.aaa {
+    -fx-background-insets: 12;
+}
+.shadow{
+    -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.1),30,0,0,0);
+}
+.shadow-rose{
+    -fx-effect: dropshadow(three-pass-box,rgba(255,194,206,1),30,0,0,0);
+}
+.shadow-blue{
 
-/* Background fill */
+     -fx-effect: dropshadow(three-pass-box,rgba(77, 75, 172,0.7),30,0,0,0);
+ }
+.shadow-blue-fonsee{
 
+    -fx-effect: dropshadow(three-pass-box,rgba(77, 75, 172,0.4),30,0,0,0);
+}
+.shadow-red{
+
+    -fx-effect: dropshadow(three-pass-box,rgba(255, 128, 139,0.7),30,0,0,0);
+}

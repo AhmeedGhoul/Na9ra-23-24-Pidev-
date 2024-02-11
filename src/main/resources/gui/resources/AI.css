@@ -7,7 +7,10 @@
 }
 .left-form{
 
-     -fx-background-color: white;}
+     -fx-background-color: white;
+    -fx-background-radius: 50px;
+}
+
 .logout-btn{
 
 
@@ -48,4 +51,13 @@
 }
 .shadow-blue{
     -fx-effect: dropshadow(three-pass-box,rgba(20,120,255,0.25),30,0,0,0);
+}
+.aa {
+    -fx-background-radius: 50;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 4, 4);
+    -fx-background-insets: 12;
+    -fx-background-color: #f8fbff;
+}
+.shadow-left-menu{
+    -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.2),30,0,0,0);
 }
