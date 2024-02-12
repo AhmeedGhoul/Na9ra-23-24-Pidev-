@@ -43,7 +43,7 @@ public class ItemQuizzController implements Initializable {
 
     @FXML
     void supp_btn_clicked() throws SQLException {
-ServiceQuiz quiz = new ServiceQuiz();
+ServiceQuiz quiz  = new ServiceQuiz();
         quiz.supprimer(Integer.parseInt(id.getText()));
     }
     public void initialize(URL url, ResourceBundle resourceBundle) {
