@@ -1,0 +1,27 @@
+.grid-pane {
+    -fx-background-color: #ffffff; /* White background color */
+}
+
+/* Add padding and spacing between elements */
+.grid-pane > * {
+    -fx-padding: 20px; /* Adjust padding as needed */
+}
+
+.grid-pane > *, .grid-pane > * > * {
+    -fx-spacing: 5px; /* Adjust spacing between elements as needed */
+}
+/* Transparent ScrollPane */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+/* Hide Vertical ScrollBar */
+.scroll-pane .scroll-bar:vertical {
+    -fx-opacity: 0;
+}
+
+/* Hide Horizontal ScrollBar */
+.scroll-pane .scroll-bar:horizontal {
+    -fx-opacity: 0;
+}
