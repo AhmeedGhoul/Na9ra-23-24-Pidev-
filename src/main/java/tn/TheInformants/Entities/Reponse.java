@@ -1,20 +1,29 @@
 package tn.TheInformants.Entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Reponse {
     private int id_Reponse;
     private String reponse;
-    private int question_id;
-    public Reponse(){}
+    private List<User> user ;
 
-    public Reponse(String reponse, int question_id) {
-        this.reponse = reponse;
-        this.question_id = question_id;
+    public Reponse(){
+        this.user  = new ArrayList<>();
+
     }
 
-    public Reponse(int id_Reponse, String reponse, int question_id) {
+    public Reponse(String reponse) {
+        this.reponse = reponse;
+        this.user  = new ArrayList<>();
+
+    }
+
+    public Reponse(int id_Reponse, String reponse) {
         this.id_Reponse = id_Reponse;
         this.reponse = reponse;
-        this.question_id = question_id;
+        this.user  = new ArrayList<>();
+
     }
 
     public int getId_Reponse() {
@@ -25,9 +34,7 @@ public class Reponse {
         return reponse;
     }
 
-    public int getQuestion_id() {
-        return question_id;
-    }
+
 
     public void setId_Reponse(int id_Reponse) {
         this.id_Reponse = id_Reponse;
@@ -36,17 +43,22 @@ public class Reponse {
     public void setReponse(String reponse) {
         this.reponse = reponse;
     }
-
-    public void setQuestion_id(int question_id) {
-        this.question_id = question_id;
+    public List<User> getUser() {
+        return user;
     }
+
+    public void setUser(User user) {
+        this.user.add(user);
+    }
+
 
     @Override
     public String toString() {
         return "Reponse{" +
                 "id_Reponse=" + id_Reponse +
                 ", reponse='" + reponse + '\'' +
-                ", question_id=" + question_id +
+                ", users=" + user +
+
                 '}';
     }
 }
