@@ -26,7 +26,7 @@
             <Font size="10.5" />
          </font>
       </Text>
-      <Button layoutX="8.0" layoutY="292.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="203.0" styleClass="blue-btn" text="Play" textFill="WHITE" />
+      <Button fx:id="play_btn" layoutX="8.0" layoutY="292.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="203.0" styleClass="blue-btn" text="Play" textFill="WHITE" />
       <Label fx:id="categ" layoutX="13.0" layoutY="275.0" text="Categorie">
          <font>
             <Font size="10.0" />

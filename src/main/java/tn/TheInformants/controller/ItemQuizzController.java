@@ -1,5 +1,6 @@
 package tn.TheInformants.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,6 +25,8 @@ public class ItemQuizzController implements Initializable {
     @FXML
     private Button mod_btn;
     @FXML
+    private Button play_btn;
+    @FXML
     private Label categ;
 
     @FXML
@@ -40,6 +43,8 @@ public class ItemQuizzController implements Initializable {
 
     @FXML
     private Label titre;
+    private QuizController quizController;
+    private  Quiz quiz;
 
     @FXML
     void supp_btn_clicked() throws SQLException {
@@ -47,23 +52,20 @@ ServiceQuiz quiz  = new ServiceQuiz();
         quiz.supprimer(Integer.parseInt(id.getText()));
     }
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        mod_btn.setOnMouseClicked(e -> {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/students/ModQuizz.fxml"));
-        try {
-            Parent p = (Parent) fxmlLoader.load();
-            midlasttt.getChildren().clear();
-            midlasttt.getChildren().add(p);
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
-    });}
+        mod_btn.setOnMouseClicked(e -> {quizController.setUpEditPage(quiz); });
+        play_btn.setOnMouseClicked(e -> {quizController.setUpEditPage(quiz); //nbdlha selon play
+            });
+    }
 
-    public void setDATA(Quiz quiz){
+
+    public void setDATA(Quiz quiz,QuizController quizController){
         id.setText(String.valueOf(quiz.getQuiz_id()));
 descrp.setText(quiz.getDecrp());
         titre.setText(quiz.getTitre());
         quest.setText(String.valueOf(quiz.getNb_quest()));
         descrp.setText(quiz.getDecrp());
+        this.quizController=quizController;
+        this.quiz=quiz;
 
     }
 

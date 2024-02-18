@@ -77,4 +77,167 @@ public class ServiceQuiz implements IService<Quiz> {
         }
         return quizs;
     }
+    @Override
+    public List<Quiz> recherche(String name) throws SQLException {
+        List<Quiz> quizs = new ArrayList<>();
+        String sql = "SELECT * FROM quiz WHERE titre LIKE ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, "%" + name + "%"); // Concatenate % to the parameter value
+// Set the value of the first parameter to 'name'
+
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            Quiz p = new Quiz();
+            p.setQuiz_id(rs.getInt("quiz_id"));
+            p.setDecrp(rs.getString("decrp"));
+            p.setTitre(rs.getString("titre"));
+            p.setNb_quest(rs.getInt("nb_quest"));
+            p.setCategorie(rs.getString("categorie"));
+            p.setUser_id(rs.getInt("user_id"));
+            p.setImage_url(rs.getString("image_url"));
+
+            quizs.add(p);
+        }
+        return quizs;
+    }
+
+
+    @Override
+    public void ajouter(Quiz quiz, int id) throws SQLException {
+
+    }
+
+    @Override
+    public List<Quiz> filter(String categ) throws SQLException {
+        List<Quiz> quizs = new ArrayList<>();
+        String sql = "SELECT * FROM quiz WHERE categorie LIKE ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, "%" + categ + "%"); // Concatenate % to the parameter value
+// Set the value of the first parameter to 'name'
+
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            Quiz p = new Quiz();
+            p.setQuiz_id(rs.getInt("quiz_id"));
+            p.setDecrp(rs.getString("decrp"));
+            p.setTitre(rs.getString("titre"));
+            p.setNb_quest(rs.getInt("nb_quest"));
+            p.setCategorie(rs.getString("categorie"));
+            p.setUser_id(rs.getInt("user_id"));
+            p.setImage_url(rs.getString("image_url"));
+
+            quizs.add(p);
+        }
+        return quizs;
+    }
+
+    @Override
+    public List<Quiz> filterquestnb(int nb) throws SQLException {
+        List<Quiz> quizs = new ArrayList<>();
+        if (nb < 10) {
+            String sql = "SELECT * FROM quiz WHERE nb_quest < 10";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Quiz p = new Quiz();
+                p.setQuiz_id(rs.getInt("quiz_id"));
+                p.setDecrp(rs.getString("decrp"));
+                p.setTitre(rs.getString("titre"));
+                p.setNb_quest(rs.getInt("nb_quest"));
+                p.setCategorie(rs.getString("categorie"));
+                p.setUser_id(rs.getInt("user_id"));
+                p.setImage_url(rs.getString("image_url"));
+                quizs.add(p);
+            }
+            return quizs;
+        } else if (nb > 15) {
+            String sql = "SELECT * FROM quiz WHERE nb_quest > 15";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Quiz p = new Quiz();
+                p.setQuiz_id(rs.getInt("quiz_id"));
+                p.setDecrp(rs.getString("decrp"));
+                p.setTitre(rs.getString("titre"));
+                p.setNb_quest(rs.getInt("nb_quest"));
+                p.setCategorie(rs.getString("categorie"));
+                p.setUser_id(rs.getInt("user_id"));
+                p.setImage_url(rs.getString("image_url"));
+                quizs.add(p);
+            }
+            return quizs;
+        } else {
+            String sql = "SELECT * FROM quiz WHERE nb_quest BETWEEN 10 AND 15";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Quiz p = new Quiz();
+                p.setQuiz_id(rs.getInt("quiz_id"));
+                p.setDecrp(rs.getString("decrp"));
+                p.setTitre(rs.getString("titre"));
+                p.setNb_quest(rs.getInt("nb_quest"));
+                p.setCategorie(rs.getString("categorie"));
+                p.setUser_id(rs.getInt("user_id"));
+                p.setImage_url(rs.getString("image_url"));
+                quizs.add(p);
+            }
+            return quizs;
+        }
+
+    }
+
+    @Override
+    public List<Quiz> trier(String trier) throws SQLException {
+        List<Quiz> quizs = new ArrayList<>();
+        if (trier.equals("default")) {
+            String sql = "SELECT * FROM quiz ";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Quiz p = new Quiz();
+                p.setQuiz_id(rs.getInt("quiz_id"));
+                p.setDecrp(rs.getString("decrp"));
+                p.setTitre(rs.getString("titre"));
+                p.setNb_quest(rs.getInt("nb_quest"));
+                p.setCategorie(rs.getString("categorie"));
+                p.setUser_id(rs.getInt("user_id"));
+                p.setImage_url(rs.getString("image_url"));
+                quizs.add(p);
+            }
+            return quizs;
+        } else if (trier.equals("Question")) {
+            String sql = "SELECT * FROM quiz order by nb_quest";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Quiz p = new Quiz();
+                p.setQuiz_id(rs.getInt("quiz_id"));
+                p.setDecrp(rs.getString("decrp"));
+                p.setTitre(rs.getString("titre"));
+                p.setNb_quest(rs.getInt("nb_quest"));
+                p.setCategorie(rs.getString("categorie"));
+                p.setUser_id(rs.getInt("user_id"));
+                p.setImage_url(rs.getString("image_url"));
+                quizs.add(p);
+            }
+            return quizs;
+        } else {
+            String sql = "SELECT * FROM quiz order by titre";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Quiz p = new Quiz();
+                p.setQuiz_id(rs.getInt("quiz_id"));
+                p.setDecrp(rs.getString("decrp"));
+                p.setTitre(rs.getString("titre"));
+                p.setNb_quest(rs.getInt("nb_quest"));
+                p.setCategorie(rs.getString("categorie"));
+                p.setUser_id(rs.getInt("user_id"));
+                p.setImage_url(rs.getString("image_url"));
+                quizs.add(p);
+            }
+            return quizs;
+        }
+
+    }
 }
