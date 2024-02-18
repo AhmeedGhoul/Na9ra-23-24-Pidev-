@@ -15,6 +15,7 @@ public class ServiceBook implements Iservices<Book> {
         connection= MyDataBase.getInstance().getConnection();
     }
     @Override
+
     public void ajouter(Book book) throws SQLException {
         String sql = "INSERT INTO Books (id_liv, nom_liv, disponibilite_liv, categorie_liv, prix_liv) VALUES " +
                 "('" + book.getId_liv() + "','" + book.getNom_liv() + "','" +

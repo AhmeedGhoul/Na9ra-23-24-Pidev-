@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -378,16 +379,7 @@ System.exit(0);
                 throw new RuntimeException(ex);
             }
         });
-        book_btn.setOnMouseClicked(e -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/Admin/eBookUI.fxml"));
-            try {
-                Parent p = (Parent) fxmlLoader.load();
-                midlast.getChildren().clear();
-                midlast.getChildren().add(p);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
+        book_btn.setOnMouseClicked(this::handle);
         evenements_btn.setOnMouseClicked(e -> {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/Admin/EvenementUI.fxml"));
             try {
@@ -418,5 +410,16 @@ System.exit(0);
                 throw new RuntimeException(ex);
             }
         });
+    }
+
+    private void handle(MouseEvent e) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/Admin/eBookUI.fxml"));
+        try {
+            Parent p = (Parent) fxmlLoader.load();
+            midlast.getChildren().clear();
+            midlast.getChildren().add(p);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 }

@@ -15,7 +15,7 @@ import java.io.IOException;
 public class Na9ra extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Na9ra.class.getResource("/gui/sharedInterface/UI.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Na9ra.class.getResource("/gui/sharedInterface/AI.fxml"));
         Parent root = fxmlLoader.load();
 
         // Create a scene with transparent fill
