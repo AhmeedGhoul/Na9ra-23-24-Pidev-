@@ -169,7 +169,7 @@ public class QuizController implements Initializable {
         catn1.setToggleGroup(toggleGroupnb);
         catn2.setToggleGroup(toggleGroupnb);
         catn3.setToggleGroup(toggleGroupnb);
-        triQuiz.getItems().add("default");
+        triQuiz.getItems().add("default"); 
         triQuiz.getItems().add("titre");
         triQuiz.getItems().add("Question");
 
