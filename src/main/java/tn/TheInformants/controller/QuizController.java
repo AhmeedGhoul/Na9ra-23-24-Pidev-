@@ -340,6 +340,19 @@ questions=new ArrayList<>(Integer.parseInt(inputquizz_nb.getText()));
             PictureChooser.setImage(image);
         }
     }
+    @FXML
+    private void handlePictureBtnmod() {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choisir une image");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("*", "*")        );
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            Image image = new Image(selectedFile.toURI().toString());
+            PictureChooser1.setImage(image);
+        }
+    }
     public  void  recherche_quiz(){
         itemlist.getChildren().clear();
         ServiceQuiz serviceQuiz =new ServiceQuiz();
@@ -505,7 +518,7 @@ else
         ServiceQuiz serviceQuiz;
         //List<Question> questionss = ServiceQuiz.retirer(quiz.getQuiz_id());
         currentIndexmod = Integer.parseInt(inputquizz_nb1.getText());
-        backIndexmod = 0;
+        backIndexmod = 1;
         questionss=new ArrayList<>(Integer.parseInt(inputquizz_nb1.getText()));
         questionss.addAll(ServiceQuiz.retirer(quiz.getQuiz_id()));
         questionfieldmod.setText(questionss.get(0).getQuest());
@@ -530,7 +543,7 @@ else
         ServiceQuestion serviceQuestion = new ServiceQuestion();
 
         // Add questions to the MySQL table and associate them with the quiz
-        for (Question question : questions) {
+        for (Question question : questionss) {
             serviceQuestion.modifier(question, quiz.getQuiz_id());
         }
 
@@ -562,6 +575,7 @@ else
 
             if (backIndexmod < questionss.size()) {
                 populateFieldsmod(questionss.get(backIndexmod));
+                System.out.println(backIndexmod);
                 System.out.println("true");
                 // Update the existing question at currentIndex in the questions array
                 questionss.get(backIndexmod).setRep1(afieldmod1.getText());
@@ -601,10 +615,10 @@ else
     }
 
     private void populateFieldsmod(Question question) {
-        afield1.setText(question.getRep1());
-        afield2.setText(question.getRep2());
-        afield3.setText(question.getRep3());
-        afield4.setText(question.getRep4());
-        questionfield.setText(question.getQuest());
+        afieldmod1.setText(question.getRep1());
+        afieldmod2.setText(question.getRep2());
+        afieldmod3.setText(question.getRep3());
+        afieldmod4.setText(question.getRep4());
+        questionfieldmod.setText(question.getQuest());
     }
 }

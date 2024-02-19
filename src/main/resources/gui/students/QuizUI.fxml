@@ -236,7 +236,7 @@
             <Button layoutX="540.0" layoutY="124.0" mnemonicParsing="false" onAction="#modquiz_btn_clicked" text="modifier" />
             <Button layoutY="18.0" mnemonicParsing="false" onAction="#back_btn_clicked" text="Back" />
             <Label layoutX="684.0" layoutY="90.0" text="Image" />
-            <Button layoutX="768.0" layoutY="86.0" mnemonicParsing="false" text="browse" />
+            <Button layoutX="768.0" layoutY="86.0" mnemonicParsing="false" onAction="#handlePictureBtnmod" text="browse" />
             <ImageView fx:id="PictureChooser1" fitHeight="150.0" fitWidth="200.0" layoutX="843.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
             <Button layoutX="961.0" layoutY="69.0" mnemonicParsing="false" text="Next" />
             <AnchorPane fx:id="questionanchor1" layoutX="14.0" layoutY="156.0" prefHeight="563.0" prefWidth="1111.0" visible="false">
