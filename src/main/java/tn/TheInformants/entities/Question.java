@@ -20,6 +20,9 @@ public class Question {
         this.rep1 = rep1;
     }
 
+    public Question() {
+    }
+
     public void setRep2(String rep2) {
         this.rep2 = rep2;
     }

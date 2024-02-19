@@ -52,9 +52,26 @@ ServiceQuiz quiz  = new ServiceQuiz();
         quiz.supprimer(Integer.parseInt(id.getText()));
     }
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        mod_btn.setOnMouseClicked(e -> {quizController.setUpEditPage(quiz); });
-        play_btn.setOnMouseClicked(e -> {quizController.setUpEditPage(quiz); //nbdlha selon play
-            });
+        mod_btn.setOnMouseClicked(e -> {
+
+            try {
+                quizController.setUpEditPage(quiz);
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+
+
+        });
+
+
+
+        play_btn.setOnMouseClicked(e -> {
+            try {
+                quizController.setUpEditPage(quiz); //nbdlha selon play
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
     }
 
 

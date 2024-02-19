@@ -1,5 +1,6 @@
 package tn.TheInformants.services;
 
+import tn.TheInformants.entities.Question;
 import tn.TheInformants.entities.Quiz;
 import tn.TheInformants.iservices.IService;
 import tn.TheInformants.utils.MyDataBase;
@@ -10,7 +11,7 @@ import java.util.List;
 
 public class ServiceQuiz implements IService<Quiz> {
 
-    private Connection connection;
+    private static Connection connection;
 
     public ServiceQuiz(){
         connection= MyDataBase.getInstance().getConnection();
@@ -104,6 +105,11 @@ public class ServiceQuiz implements IService<Quiz> {
 
     @Override
     public void ajouter(Quiz quiz, int id) throws SQLException {
+
+    }
+
+    @Override
+    public void modifier(Quiz quiz, int id) throws SQLException {
 
     }
 
@@ -240,4 +246,25 @@ public class ServiceQuiz implements IService<Quiz> {
         }
 
     }
+    public static List<Question> retirer(int id) throws SQLException {
+        List<Question> questions= new ArrayList<>();
+        String sql = "select * from question where quiz_id = ? ";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1,String.valueOf(id)); // Concatenate % to the parameter value
+// Set the value of the first parameter to 'name'
+
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            Question p = new Question();
+            p.setId_quest(rs.getInt("id_quest"));
+            p.setQuest(rs.getString("quest"));
+            p.setRep1(rs.getString("rep1"));
+            p.setRep2(rs.getString("rep2"));
+            p.setRep3(rs.getString("rep3"));
+            p.setRep4(rs.getString("rep4"));
+            p.setRepc(rs.getString("repc"));
+
+            questions.add(p);
+        }
+        return questions;}
 }

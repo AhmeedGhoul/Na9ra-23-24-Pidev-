@@ -34,6 +34,10 @@ public class QuizController implements Initializable {
     @FXML
     private AnchorPane questionanchor;
     @FXML
+    private GridPane prevmod;
+    @FXML
+    private AnchorPane nextmod;
+    @FXML
     private AnchorPane midlast;
     @FXML
     private Button ajouterquiz_btn;
@@ -62,7 +66,37 @@ public class QuizController implements Initializable {
 
     @FXML
     private TextField inputquizz_title;
-    ArrayList <Question> questions;
+    @FXML
+    private ImageView PictureChooser1;
+
+    @FXML
+    private TextField inputquizz_descrp1;
+    @FXML
+    private TextField inputquizz_cat1;
+    @FXML
+    private TextField inputquizz_id1;
+
+    @FXML
+    private TextField inputquizz_nb1;
+
+    @FXML
+    private TextField inputquizz_title1;
+    ArrayList <Question> questions,questionss;
+    @FXML
+    private TextArea afieldmod1;
+
+
+    @FXML
+    private TextArea afieldmod2;
+
+    @FXML
+    private TextArea afieldmod3;
+
+    @FXML
+    private TextArea afieldmod4;
+
+    @FXML
+    private TextArea questionfieldmod;
     @FXML
     private TextArea afield1;
     @FXML
@@ -169,7 +203,7 @@ public class QuizController implements Initializable {
         catn1.setToggleGroup(toggleGroupnb);
         catn2.setToggleGroup(toggleGroupnb);
         catn3.setToggleGroup(toggleGroupnb);
-        triQuiz.getItems().add("default"); 
+        triQuiz.getItems().add("default");
         triQuiz.getItems().add("titre");
         triQuiz.getItems().add("Question");
 
@@ -178,6 +212,7 @@ public class QuizController implements Initializable {
     public  void back_btn_clicked(){
        quiz_int.setVisible(true);
        ajouterquiz_int.setVisible(false);
+       modquiz_int.setVisible(false);
     }
     public  void addquiz_btn_clicked() throws SQLException {
 
@@ -205,19 +240,7 @@ public class QuizController implements Initializable {
         currentIndex = 0;
         backIndex = 0;
 questions=new ArrayList<>(Integer.parseInt(inputquizz_nb.getText()));
-/*
-        for (int i=0;i<Integer.parseInt(inputquizz_nb.getText());i++) {
 
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/students/QuestionItem.fxml"));
-            try {
-                Parent p =fxmlLoader.load();
-                System.out.println("ee");
-                quest_int.getChildren().add(p);
-            } catch (
-                    IOException ex) {
-                throw new RuntimeException(ex);
-            } }*/
     }
     private int currentIndex = 0;
     private int backIndex = 0;
@@ -297,6 +320,11 @@ questions=new ArrayList<>(Integer.parseInt(inputquizz_nb.getText()));
         afield3.clear();
         afield4.clear();
         questionfield.clear();
+        afieldmod1.clear();
+        afieldmod2.clear();
+        afieldmod3.clear();
+        afieldmod4.clear();
+        questionfieldmod.clear();
     }
 
     @FXML
@@ -465,7 +493,118 @@ else
     }
     @FXML
     private AnchorPane modquiz_int;
-    public void setUpEditPage(Quiz quiz){
+    public void setUpEditPage(Quiz quiz) throws SQLException {
+        quiz_int.setVisible(false);
         modquiz_int.setVisible(true);
+        inputquizz_title1.setText(String.valueOf(quiz.getTitre()));
+        inputquizz_descrp1.setText(String.valueOf(quiz.getDecrp()));
+        inputquizz_nb1.setText(String.valueOf(quiz.getNb_quest()));
+        inputquizz_cat1.setText(String.valueOf(quiz.getCategorie()));
+        inputquizz_id1.setText(String.valueOf(quiz.getQuiz_id()));
+       // PictureChooser1.setImage(new Image(quiz.getImage_url()));
+        ServiceQuiz serviceQuiz;
+        //List<Question> questionss = ServiceQuiz.retirer(quiz.getQuiz_id());
+        currentIndexmod = Integer.parseInt(inputquizz_nb1.getText());
+        backIndexmod = 0;
+        questionss=new ArrayList<>(Integer.parseInt(inputquizz_nb1.getText()));
+        questionss.addAll(ServiceQuiz.retirer(quiz.getQuiz_id()));
+        questionfieldmod.setText(questionss.get(0).getQuest());
+        afieldmod1.setText(questionss.get(0).getRep1());
+        afieldmod2.setText(questionss.get(0).getRep2());
+        afieldmod3.setText(questionss.get(0).getRep3());
+        afieldmod4.setText(questionss.get(0).getRep4());
+    }
+
+    public  void modquiz_btn_clicked() throws SQLException {
+
+        ServiceQuiz serviceQuiz = new ServiceQuiz();
+        int id = Integer.parseInt(inputquizz_id1.getText());
+        String descrp = inputquizz_descrp1.getText();
+        String title = inputquizz_title1.getText();
+        int nb = Integer.parseInt(inputquizz_nb1.getText());
+        String cat = inputquizz_cat1.getText();
+        String image = PictureChooser1.getImage().toString();
+
+        Quiz quiz = new Quiz(id, descrp, title, nb, cat, 1, image);
+        serviceQuiz.modifier(quiz);
+        ServiceQuestion serviceQuestion = new ServiceQuestion();
+
+        // Add questions to the MySQL table and associate them with the quiz
+        for (Question question : questions) {
+            serviceQuestion.modifier(question, quiz.getQuiz_id());
+        }
+
+
+    }
+    private int currentIndexmod = 0;
+    private int backIndexmod = 0;
+    public void nextmod() throws SQLException {
+        if (backIndexmod == currentIndexmod) {
+            System.out.println("true1");
+
+            if (!questionfieldmod.getText().isEmpty()) {
+                System.out.println("true2");
+
+                if (currentIndexmod >= questions.size()) {
+                    System.out.println("true3");
+
+                    questionss.add(new Question(currentIndexmod, Integer.parseInt(inputquizz_id1.getText()), questionfieldmod.getText(), afieldmod1.getText(), afieldmod2.getText(), afieldmod3.getText(), afieldmod4.getText(), afieldmod4.getText()));
+                }
+                currentIndexmod++;
+                backIndexmod = currentIndexmod;
+                if (currentIndexmod == Integer.parseInt(inputquizz_nb1.getText())) {
+                    // nextques.setVisible(false);
+                } else {
+                    clearFields();
+                }
+            }
+        } else {
+
+            if (backIndexmod < questionss.size()) {
+                populateFieldsmod(questionss.get(backIndexmod));
+                System.out.println("true");
+                // Update the existing question at currentIndex in the questions array
+                questionss.get(backIndexmod).setRep1(afieldmod1.getText());
+                questionss.get(backIndexmod).setRep2(afieldmod2.getText());
+                questionss.get(backIndexmod).setRep3(afieldmod3.getText());
+                questionss.get(backIndexmod).setRep4(afieldmod4.getText());
+                questionss.get(backIndexmod).setQuest(questionfieldmod.getText());
+
+            }
+            backIndexmod++;
+        }
+    }
+
+    public void prevmod() throws SQLException {
+        if (backIndexmod > 0) {
+            backIndexmod--;
+            if (backIndexmod < questionss.size()) {
+                populateFieldsmod(questionss.get(backIndexmod));
+            }
+        } else {
+            //backques.setVisible(false);
+        }
+    }
+
+    public void deletemod() throws SQLException {
+        if (backIndexmod >= 0 && backIndexmod < questionss.size()) {
+            questionss.remove(backIndexmod);
+            if (backIndexmod < questionss.size()) {
+                populateFieldsmod(questionss.get(backIndexmod));
+            } else if (backIndexmod > 0) {
+                backIndexmod--;
+                if (backIndexmod < questionss.size()) {
+                    populateFieldsmod(questionss.get(backIndexmod));
+                }
+            }
+        }
+    }
+
+    private void populateFieldsmod(Question question) {
+        afield1.setText(question.getRep1());
+        afield2.setText(question.getRep2());
+        afield3.setText(question.getRep3());
+        afield4.setText(question.getRep4());
+        questionfield.setText(question.getQuest());
     }
 }
