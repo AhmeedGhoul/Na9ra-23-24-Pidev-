@@ -10,3 +10,20 @@
     -fx-border-radius: 50px;
     -fx-background-radius: 50px;
 }
+.quiz-item {
+    -fx-pref-width: 238px; /* Set width of each item */
+    -fx-pref-height: 150px; /* Set height of each item */
+    -fx-background-color: #f0f0f0; /* Background color */
+    -fx-border-width: 1px; /* Border width */
+    -fx-border-radius: 5px; /* Border radius */
+    -fx-padding: 10px; /* Padding */
+    -fx-alignment: center; /* Center the content */
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 10,0,0,1 ); /* Add drop shadow */
+}
+
+/* Customize the content inside each item */
+.quiz-item .quiz-content {
+    -fx-font-size: 14px; /* Font size */
+    -fx-text-fill: #333333; /* Text color */
+}
+/* Customize spacing between columns */

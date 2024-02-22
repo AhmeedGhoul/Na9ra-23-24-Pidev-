@@ -20,30 +20,29 @@ public class ServiceQuiz implements IService<Quiz> {
 
     @Override
     public void ajouter(Quiz quiz) throws SQLException {
-        String sql = "INSERT INTO `Quiz`(`quiz_id`, `decrp`, `titre`, `nb_quest`, `categorie`, `user_id`, `image_url`) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO `Quiz`(`decrp`, `titre`, `nb_quest`, `categorie`, `user_id`, `image_url`) VALUES (?,?,?,?,?,?)";
 
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1,quiz.getQuiz_id());
-        statement.setString(2,quiz.getDecrp());
-        statement.setString(3,quiz.getTitre());
-        statement.setInt(4,quiz.getNb_quest());
-        statement.setString(5,quiz.getCategorie());
-        statement.setInt(6,quiz.getUser_id());
-        statement.setString(7,quiz.getImage_url());
+        statement.setString(1,quiz.getDecrp());
+        statement.setString(2,quiz.getTitre());
+        statement.setInt(3,quiz.getNb_quest());
+        statement.setString(4,quiz.getCategorie());
+        statement.setInt(5,quiz.getUser_id());
+        statement.setString(6,quiz.getImage_url());
         statement.executeUpdate();
 
     }
 
     @Override
     public void modifier(Quiz quiz) throws SQLException {
-        String sql = "Update quiz set decrp= ? , titre= ? , nb_quest = ?, categorie= ? , image_url= ? , user_id= ? where quiz_id = ?";
+        String sql = "Update quiz set decrp= ? , titre= ? , nb_quest = ?, categorie= ? , user_id= ?, image_url= ?  where quiz_id = ?";
         PreparedStatement preparedStatement= connection.prepareStatement(sql);
         preparedStatement.setString(1,quiz.getDecrp());
         preparedStatement.setString(2, quiz.getTitre());
         preparedStatement.setInt(3,quiz.getNb_quest());
         preparedStatement.setString(4, quiz.getCategorie());
-        preparedStatement.setString(5,quiz.getImage_url());
-        preparedStatement.setInt(6,quiz.getUser_id());
+        preparedStatement.setString(6,quiz.getImage_url());
+        preparedStatement.setInt(5,quiz.getUser_id());
         preparedStatement.setInt(7,quiz.getQuiz_id());
         preparedStatement.executeUpdate();
     }
@@ -57,7 +56,17 @@ public class ServiceQuiz implements IService<Quiz> {
         preparedStatement.executeUpdate();
 
     }
-
+    public int returnid(String quest) throws SQLException {
+        ArrayList<Question> questions= new ArrayList<>();
+        String sql = "select * from quiz where titre = ? ";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1,quest); // Concatenate % to the parameter value
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()){
+            Quiz p = new Quiz();
+            return rs.getInt("quiz_id");}
+        return 0;
+    }
     @Override
     public List<Quiz> afficher() throws SQLException {
         List<Quiz> quizs= new ArrayList<>();
@@ -110,7 +119,16 @@ public class ServiceQuiz implements IService<Quiz> {
 
     @Override
     public void modifier(Quiz quiz, int id) throws SQLException {
-
+        String sql = "Update quiz set decrp= ? , titre= ? , nb_quest = ?, categorie= ? , user_id= ?, image_url= ?  where quiz_id = ?";
+        PreparedStatement preparedStatement= connection.prepareStatement(sql);
+        preparedStatement.setString(1,quiz.getDecrp());
+        preparedStatement.setString(2, quiz.getTitre());
+        preparedStatement.setInt(3,quiz.getNb_quest());
+        preparedStatement.setString(4, quiz.getCategorie());
+        preparedStatement.setString(6,quiz.getImage_url());
+        preparedStatement.setInt(5,quiz.getUser_id());
+        preparedStatement.setInt(7,id);
+        preparedStatement.executeUpdate();
     }
 
     @Override
@@ -246,8 +264,8 @@ public class ServiceQuiz implements IService<Quiz> {
         }
 
     }
-    public static List<Question> retirer(int id) throws SQLException {
-        List<Question> questions= new ArrayList<>();
+    public static ArrayList<Question> retirer(int id) throws SQLException {
+        ArrayList<Question> questions= new ArrayList<>();
         String sql = "select * from question where quiz_id = ? ";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1,String.valueOf(id)); // Concatenate % to the parameter value
@@ -267,4 +285,11 @@ public class ServiceQuiz implements IService<Quiz> {
             questions.add(p);
         }
         return questions;}
+    public void delete(int id) throws SQLException {
+        String sql= "delete from question where quiz_id = ?";
+        PreparedStatement preparedStatement= connection.prepareStatement(sql);
+        preparedStatement.setInt(1,id);
+        preparedStatement.executeUpdate();
+
+    }
 }

@@ -17,8 +17,8 @@ public class Quiz {
 
     private String categorie;
     private int user_id;
-    public Quiz(int quiz_id, String decrp, String titre, int nb_quest, String categorie, int user_id,String image_url) {
-        this.quiz_id = quiz_id;
+    public Quiz(String decrp, String titre, int nb_quest, String categorie, int user_id,String image_url) {
+
         this.decrp = decrp;
         this.titre = titre;
         this.nb_quest = nb_quest;

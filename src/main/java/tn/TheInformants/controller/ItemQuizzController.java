@@ -18,6 +18,7 @@ import tn.TheInformants.entities.Quiz;
 import tn.TheInformants.services.ServiceQuiz;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -44,17 +45,22 @@ public class ItemQuizzController implements Initializable {
     @FXML
     private Label titre;
     private QuizController quizController;
+    private PlayQuizController playQuizController=new PlayQuizController();
     private  Quiz quiz;
+    @FXML
+    private ImageView imagev;
 
     @FXML
     void supp_btn_clicked() throws SQLException {
 ServiceQuiz quiz  = new ServiceQuiz();
         quiz.supprimer(Integer.parseInt(id.getText()));
+        quizController.show();
     }
     public void initialize(URL url, ResourceBundle resourceBundle) {
         mod_btn.setOnMouseClicked(e -> {
 
             try {
+
                 quizController.setUpEditPage(quiz);
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
@@ -67,8 +73,9 @@ ServiceQuiz quiz  = new ServiceQuiz();
 
         play_btn.setOnMouseClicked(e -> {
             try {
-                quizController.setUpEditPage(quiz); //nbdlha selon play
-            } catch (SQLException ex) {
+                quizController.setUpPlayPage();
+               playQuizController.setUpEditPage(quiz);
+            } catch (IOException | SQLException ex) {
                 throw new RuntimeException(ex);
             }
         });
@@ -81,7 +88,15 @@ descrp.setText(quiz.getDecrp());
         titre.setText(quiz.getTitre());
         quest.setText(String.valueOf(quiz.getNb_quest()));
         descrp.setText(quiz.getDecrp());
+        System.out.println(quiz.getImage_url());
+        InputStream inStream1 = getClass().getResourceAsStream(quiz.getImage_url());
+        Image imageObject1 = new Image(inStream1);
+
+         //image = new ImageView(imageObject);
+        imagev.setImage(imageObject1);
         this.quizController=quizController;
+
+
         this.quiz=quiz;
 
     }
