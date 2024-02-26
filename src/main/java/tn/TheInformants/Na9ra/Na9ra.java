@@ -23,7 +23,7 @@ public class Na9ra extends Application {
         scene.setFill(null);
 
         // Apply CSS to the scene to make it transparent with rounded corners and drop shadow effect
-        scene.getStylesheets().add(getClass().getResource("/gui/resources/UI.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/gui/resources/AI.css").toExternalForm());
 
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);

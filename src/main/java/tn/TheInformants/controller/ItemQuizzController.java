@@ -1,4 +1,4 @@
-package tn.TheInformants.controller;
+/*package tn.TheInformants.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +15,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import tn.TheInformants.entities.Quiz;
-import tn.TheInformants.services.ServiceQuiz;
+import tn.TheInformants.Services.ServiceQuiz;
 
 import java.io.IOException;
 import java.net.URL;
@@ -70,4 +70,4 @@ descrp.setText(quiz.getDecrp());
     }
 
 
-}
+}*/

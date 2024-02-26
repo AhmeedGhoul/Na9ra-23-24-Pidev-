@@ -15,6 +15,4 @@ public interface IService<T>{
     List<T> filterquestnb(int nb) throws SQLException;
     List<T> trier(String trier) throws SQLException;
 
-
-
 }

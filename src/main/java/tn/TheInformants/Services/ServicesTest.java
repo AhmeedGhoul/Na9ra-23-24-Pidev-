@@ -1,9 +1,9 @@
-package tn.TheInformants.Services;
+/*package tn.TheInformants.Services;
 
 import tn.TheInformants.Entities.Test;
 import tn.TheInformants.Enums.Categorie;
 import tn.TheInformants.Enums.Status;
-import tn.TheInformants.Utils.MyDataBase;
+import tn.TheInformants.utils.MyDataBase;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -62,4 +62,4 @@ public class ServicesTest implements Iservices<Test> {
     }
 
 
-}
+}*/

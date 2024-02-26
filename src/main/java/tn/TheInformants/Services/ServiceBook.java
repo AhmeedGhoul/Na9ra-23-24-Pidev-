@@ -1,4 +1,6 @@
 package tn.TheInformants.Services;
+import java.security.cert.PolicyNode;
+import java.sql.Connection;
 
 import tn.TheInformants.Entities.Book;
 import tn.TheInformants.Utils.MyDataBase;
@@ -10,6 +12,8 @@ import java.util.List;
 
 public class ServiceBook implements Iservices<Book> {
     private final Connection connection;
+
+
     public ServiceBook()
     {
         connection= MyDataBase.getInstance().getConnection();
@@ -38,12 +42,12 @@ public class ServiceBook implements Iservices<Book> {
             preparedStatement.setString(3, book.getDisponibilite().toString());
             preparedStatement.setString(4, book.getCategorie().toString());
             preparedStatement.setDouble(5, book.getPrix_liv());
-
+            preparedStatement.setInt(6, book.getId_liv());  // Set the value for the WHERE clause
 
             preparedStatement.executeUpdate();
         }
-
     }
+
 
     @Override
     public void supprimer(Book book) throws SQLException {
@@ -57,7 +61,7 @@ public class ServiceBook implements Iservices<Book> {
     @Override
     public List<Book> recuperer() throws SQLException {
         List<Book> booksList = new ArrayList<>();
-        String sql = "SELECT * FROM book";
+        String sql = "SELECT * FROM books";
 
         try (Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery(sql)) {

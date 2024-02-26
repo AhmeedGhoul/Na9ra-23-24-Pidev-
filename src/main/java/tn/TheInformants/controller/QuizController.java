@@ -1,4 +1,4 @@
-package tn.TheInformants.controller;
+/*package tn.TheInformants.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,8 +16,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import tn.TheInformants.entities.Question;
 import tn.TheInformants.entities.Quiz;
-import tn.TheInformants.services.ServiceQuestion;
-import tn.TheInformants.services.ServiceQuiz;
+import tn.TheInformants.Services.ServiceQuestion;
+import tn.TheInformants.Services.ServiceQuiz;
 
 import java.io.File;
 import java.io.IOException;
@@ -217,7 +217,7 @@ questions=new ArrayList<>(Integer.parseInt(inputquizz_nb.getText()));
             } catch (
                     IOException ex) {
                 throw new RuntimeException(ex);
-            } }*/
+            } }
     }
     private int currentIndex = 0;
     private int backIndex = 0;
@@ -469,3 +469,4 @@ else
         modquiz_int.setVisible(true);
     }
 }
+*/

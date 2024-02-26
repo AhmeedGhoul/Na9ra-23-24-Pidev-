@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Test {
+/*public class Test {
     private int id_Test;
     private String nom_Test;
     private String description;
@@ -15,7 +15,7 @@ public class Test {
     private Status status;
     private Categorie categorie;
     private List<User> user ;
-    private List<Question> questions;
+     // private List<Question> questions;
 
 
     public Test(){
@@ -32,7 +32,7 @@ public class Test {
         this.status = status;
         this.categorie = categorie;
         this.user  = new ArrayList<>();
-        this.questions  = new ArrayList<>();
+        //this.questions  = new ArrayList<>();
 
     }
 
@@ -44,7 +44,7 @@ public class Test {
         this.status = status;
         this.categorie = categorie;
         this.user  = new ArrayList<>();
-        this.questions  = new ArrayList<>();
+        //this.questions  = new ArrayList<>();
 
     }
 
@@ -87,11 +87,11 @@ public class Test {
     public void setUser(User user) {
         this.user.add(user);
     }
-    public List<Question> getQuestions() {
-        return questions;
+    //public List<Question> getQuestions() {
+       // return questions;
     }
 
-    public void setQuestions(Question questions) {
+    /*public void setQuestions(Question questions) {
         this.questions.add(questions);
     }
 
@@ -125,9 +125,9 @@ public class Test {
                 ", status=" + status +
                 ", categorie=" + categorie +
                 ", users=" + user +
-                ", questions=" + questions +
+                //", questions=" + questions +
                 '}';
     }
 
 
-}
+}*/

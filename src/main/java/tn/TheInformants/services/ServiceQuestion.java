@@ -1,9 +1,9 @@
-package tn.TheInformants.services;
+package tn.TheInformants.Services;
 
 import tn.TheInformants.entities.Question;
 import tn.TheInformants.entities.Quiz;
 import tn.TheInformants.iservices.IService;
-import tn.TheInformants.utils.MyDataBase;
+import tn.TheInformants.Utils.MyDataBase;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
