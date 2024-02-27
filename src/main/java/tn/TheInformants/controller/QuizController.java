@@ -1,5 +1,6 @@
 package tn.TheInformants.controller;
-
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -216,29 +217,53 @@ public void show(){
         show();
     }
     String imagepath,imagepath1;
-    public  void addquiz_btn_clicked() throws SQLException {
+
+
+    public void addquiz_btn_clicked() throws SQLException {
         currentIndex = 0;
         backIndex = 0;
 
-        ServiceQuiz serviceQuiz = new ServiceQuiz();
-
-
         String descrp = inputquizz_descrp.getText();
         String title = inputquizz_title.getText();
-        int nb = questions.size();
         String cat = inputquizz_cat.getValue();
-        String image = "/gui/resources/"+imagepath;
+        String image = "/gui/resources/" + imagepath;
 
+        // Check if any of the required fields are empty
+        if (descrp.isEmpty() || title.isEmpty() || cat == null || questions.isEmpty() || imagepath.isEmpty()) {
+            // Show a pop-up message for the violation
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            if (descrp.isEmpty()) {
+                alert.setContentText("Description field is empty!");
+            } else if (title.isEmpty()) {
+                alert.setContentText("Title field is empty!");
+            } else if (cat == null) {
+                alert.setContentText("Category is not selected!");
+            } else if (questions.isEmpty()) {
+                alert.setContentText("No questions added!");
+            } else if (imagepath.isEmpty()) {
+                alert.setContentText("Image field is empty!");
+            }
+            alert.showAndWait();
+            return; // Stop execution if any field is empty
+        }
+
+        // Proceed with quiz creation if all fields are filled
+
+        ServiceQuiz serviceQuiz = new ServiceQuiz();
+        int nb = questions.size();
         Quiz quiz = new Quiz(descrp, title, nb, cat, 1, image);
         serviceQuiz.ajouter(quiz);
+
         ServiceQuestion serviceQuestion = new ServiceQuestion();
 
         // Add questions to the MySQL table and associate them with the quiz
         for (Question question : questions) {
             serviceQuestion.ajouter(question, serviceQuiz.returnid(quiz.getTitre()));
         }
-        back_btn_clicked();
 
+        back_btn_clicked();
     }
 
     private int currentIndex = 0;
@@ -259,7 +284,7 @@ clearFields();
             questions.set(backIndex,new Question(questionfield.getText(), afield1.getText(), afield2.getText(), afield3.getText(), afield4.getText(), afield4.getText()));
 
             backIndex++;
-
+                clearFields();
 
             if (backIndex < questions.size()) {
                 populateFields(questions.get(backIndex));
@@ -567,7 +592,13 @@ else
         afieldmod4.setText(questionss.get(0).getRep4());
     }
 
-    public  void modquiz_btn_clicked() throws SQLException {
+
+
+    public void modquiz_btn_clicked() throws SQLException {
+        // Input validation for text fields
+        if (!validateInputs()) {
+            return; // Stop execution if inputs are invalid
+        }
 
         ServiceQuiz serviceQuiz = new ServiceQuiz();
         int id = Integer.parseInt(inputquizz_id1.getText());
@@ -575,10 +606,11 @@ else
         String title = inputquizz_title1.getText();
         int nb = questionss.size();
         String cat = inputquizz_cat1.getValue();
-        String image = "/gui/resources/"+imagepath1;
+        String image = "/gui/resources/" + imagepath1;
 
         Quiz quiz = new Quiz(descrp, title, nb, cat, 1, image);
-        serviceQuiz.modifier(quiz,id);
+        serviceQuiz.modifier(quiz, id);
+
         ServiceQuestion serviceQuestion = new ServiceQuestion();
         for (Question question : questionss) {
             serviceQuiz.delete(serviceQuiz.returnid(quiz.getTitre()));
@@ -588,8 +620,46 @@ else
             serviceQuestion.ajouter(question, serviceQuiz.returnid(quiz.getTitre()));
         }
         back_btn_clicked();
-
     }
+
+    private boolean validateInputs() {
+        // Validate input fields
+        if (inputquizz_id1.getText().isEmpty()) {
+            showAlert("Error", "ID field is empty!");
+            return false;
+        }
+
+        if (inputquizz_descrp1.getText().isEmpty()) {
+            showAlert("Error", "Description field is empty!");
+            return false;
+        }
+
+        if (inputquizz_title1.getText().isEmpty()) {
+            showAlert("Error", "Title field is empty!");
+            return false;
+        }
+
+        if (inputquizz_cat1.getValue() == null) {
+            showAlert("Error", "Category is not selected!");
+            return false;
+        }
+
+        if (imagepath1.isEmpty()) {
+            showAlert("Error", "Image field is empty!");
+            return false;
+        }
+
+        return true; // All inputs are valid
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
     private int currentIndexmod = 0;
     private int backIndexmod = 0;
     public void nextmod() throws SQLException {
@@ -607,6 +677,7 @@ else
             questionss.set(backIndexmod,new Question(questionfieldmod.getText(), afieldmod1.getText(), afieldmod2.getText(), afieldmod3.getText(), afieldmod4.getText(), afieldmod4.getText()));
 
             backIndexmod++;
+            clearFields();
 
             if (backIndexmod < questionss.size()) {
                 populateFieldsmod(questionss.get(backIndexmod));
