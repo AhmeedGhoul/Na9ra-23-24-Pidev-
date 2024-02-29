@@ -8,14 +8,21 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tn.TheInformants.Entities.Book;
@@ -26,10 +33,11 @@ import java.sql.Connection;
 public class AddBookController implements Initializable {
     @FXML
     private ComboBox<String> AvaibilityCombo;
-
+    @FXML
+    private TextField imgpathstring;
     @FXML
     private Label AvaibilityLabel;
-
+private String imagePath1;
     @FXML
     private Label CategorieLabel;
 
@@ -76,10 +84,15 @@ public class AddBookController implements Initializable {
 
     @FXML
     private ScrollPane scroll;
+    @FXML
+    private ImageView imgb;
     private ServiceBook serviceBook = new ServiceBook();
     Book mainbook;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        imgb.setOnMouseClicked(event -> importImage());
+        imgpathstring.setVisible(false);
         try {
 
             List<Book> booksList = serviceBook.recuperer();
@@ -141,7 +154,10 @@ public class AddBookController implements Initializable {
     @FXML
     void AddBookBtn(ActionEvent event) {
 
+        String path;
+        imgpathstring.setText(imagePath1.toString());
 
+        path=imgpathstring .getText();
         ServiceBook serviceBook = new ServiceBook();
         Book book = new Book();
         String bookTitle = TitleL.getText().trim();
@@ -149,6 +165,8 @@ public class AddBookController implements Initializable {
         if (!bookTitle.isEmpty() && bookTitle.matches(".*[a-zA-Z].*")) {
             book.setNom_liv(bookTitle);
             book.setPrix_liv(Double.parseDouble(PriceL.getText())); // Assuming there's a TextField named priceTF
+
+
 
             String selectedCategoryString = CategoryCombo.getValue();
             String selectedAvailabilityString = AvaibilityCombo.getValue();
@@ -168,7 +186,8 @@ public class AddBookController implements Initializable {
                             book.setDisponibilite(selectedAvailability);
 
                             try {
-                                serviceBook.ajouter(book);
+                               Book book2 =new Book(TitleL.getText(),selectedAvailability,selectedCategory,Double.parseDouble(PriceL.getText()),path);
+                                serviceBook.ajouter(book2);
                                 showAlert("Success", "Book Added");
 
                                 // Refresh the list of books after successful addition
@@ -287,18 +306,51 @@ public class AddBookController implements Initializable {
 
         try {
             serviceBook1.modifier(book);
-            // Afficher un message de succès ou effectuer d'autres actions nécessaires après la mise à jour réussie
             System.out.println("Le cours a été modifié avec succès.");
+
+            // Print debug information about the updated book
+            System.out.println("Updated Book: " + book);
+
+            // Verify that the data is updated
+            System.out.println("Retrieved Data: " + serviceBook1.recuperer());
 
             // Rafraîchir le contenu du GridPane après la modification réussie
             refreshGridPane(serviceBook1.recuperer());
         } catch (SQLException e) {
-            // Afficher un message d'erreur en cas d'échec de la mise à jour
             System.out.println("Erreur lors de la modification du cours : " + e.getMessage());
             e.printStackTrace();
         }
 
+
+
     }
 
+    @FXML
+
+    public void importImage() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+        );
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            try {
+                FileInputStream fileInputStream = new FileInputStream(selectedFile);
+                Image image = new Image(fileInputStream);
+                imgb.setImage(image);
+                imagePath1 = selectedFile.toURI().toString();
+            } catch (FileNotFoundException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Failed to load image: " + e.getMessage());
+                alert.showAndWait();
+            }
+        }
+    }
 
 }
+
+
+
+
+

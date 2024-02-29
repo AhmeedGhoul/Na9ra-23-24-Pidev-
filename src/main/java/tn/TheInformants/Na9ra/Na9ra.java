@@ -15,7 +15,7 @@ import java.io.IOException;
 public class Na9ra extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Na9ra.class.getResource("/gui/sharedInterface/AI.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Na9ra.class.getResource("/gui/sharedInterface/UI.fxml"));
         Parent root = fxmlLoader.load();
 
         // Create a scene with transparent fill
@@ -23,7 +23,7 @@ public class Na9ra extends Application {
         scene.setFill(null);
 
         // Apply CSS to the scene to make it transparent with rounded corners and drop shadow effect
-        scene.getStylesheets().add(getClass().getResource("/gui/resources/AI.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/gui/resources/UI.css").toExternalForm());
 
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);

@@ -22,21 +22,28 @@ public class Book {
     private Disponibilite disponibilite;
     private Categorie categorie;
     private double prix_liv;
+    private String ImagePath;
+
+
 
     // Constructeur
-    public Book(int id_liv, String nom_liv, Disponibilite disponibilite, Categorie categorie, double prix_liv) {
+    public Book(int id_liv, String nom_liv, Disponibilite disponibilite, Categorie categorie, double prix_liv,String ImagePath) {
         this.id_liv = id_liv;
         this.nom_liv = nom_liv;
         this.disponibilite = disponibilite;
         this.categorie = categorie;
         this.prix_liv = prix_liv;
+        this.ImagePath = ImagePath;
+
     }
-    public Book( String nom_liv, Disponibilite disponibilite, Categorie categorie, double prix_liv) {
+    public Book( String nom_liv, Disponibilite disponibilite, Categorie categorie, double prix_liv,String ImagePath) {
 
         this.nom_liv = nom_liv;
         this.disponibilite = disponibilite;
         this.categorie = categorie;
         this.prix_liv = prix_liv;
+        this.ImagePath = ImagePath;
+
     }
 
     // Méthodes getters et setters
@@ -79,6 +86,14 @@ public class Book {
 
     public void setPrix_liv(double prix_liv) {
         this.prix_liv = prix_liv;
+    }
+
+    public String getImagePath() {
+        return ImagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        ImagePath = imagePath;
     }
 
     @Override

@@ -13,17 +13,24 @@ import java.util.List;
 public class ServiceBook implements Iservices<Book> {
     private final Connection connection;
 
+    private static ServiceBook instance;
 
     public ServiceBook()
     {
         connection= MyDataBase.getInstance().getConnection();
     }
+    public static ServiceBook getInstance() throws SQLException{
+        if(instance==null)
+            instance=new ServiceBook();
+        return instance;
+    }
     @Override
 
     public void ajouter(Book book) throws SQLException {
-        String sql = "INSERT INTO Books (id_liv, nom_liv, disponibilite_liv, categorie_liv, prix_liv) VALUES " +
+        String sql = "INSERT INTO Books (id_liv, nom_liv, disponibilite_liv, categorie_liv, prix_liv, ImagePath) VALUES " +
                 "('" + book.getId_liv() + "','" + book.getNom_liv() + "','" +
-                book.getDisponibilite() + "','" + book.getCategorie() + "','" + book.getPrix_liv() + "')";
+                book.getDisponibilite() + "','" + book.getCategorie() + "','" + book.getPrix_liv() + "','" + book.getImagePath() + "')";
+
 
         // Utilisation de PreparedStatement pour éviter les problèmes de sécurité avec les requêtes SQL
         try (Statement statement = connection.createStatement()) {
@@ -34,7 +41,7 @@ public class ServiceBook implements Iservices<Book> {
 
     @Override
     public void modifier(Book book) throws SQLException {
-        String sql = "UPDATE Books SET id_liv = ?, Nom_liv = ?, Disponibilite_liv = ?, Categorie_liv = ?, Prix_liv = ? WHERE id_liv = ?";
+        String sql = "UPDATE Books SET id_liv = ?, Nom_liv = ?, Disponibilite_liv = ?, Categorie_liv = ?, Prix_liv = ?, ImagePath = ? WHERE id_liv = ? ";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, book.getId_liv());
@@ -43,7 +50,7 @@ public class ServiceBook implements Iservices<Book> {
             preparedStatement.setString(4, book.getCategorie().toString());
             preparedStatement.setDouble(5, book.getPrix_liv());
             preparedStatement.setInt(6, book.getId_liv());  // Set the value for the WHERE clause
-
+            preparedStatement.setString(7, book.getImagePath());
             preparedStatement.executeUpdate();
         }
     }
@@ -73,6 +80,7 @@ public class ServiceBook implements Iservices<Book> {
                 book.setDisponibilite(Book.Disponibilite.valueOf(rs.getString("Disponibilite_liv")));
                 book.setCategorie(Book.Categorie.valueOf(rs.getString("Categorie_liv")));
                 book.setPrix_liv(rs.getDouble("Prix_liv"));
+                book.setImagePath(rs.getString("ImagePath"));
                 booksList.add(book);
             }
         }
