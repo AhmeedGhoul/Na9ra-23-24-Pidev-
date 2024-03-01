@@ -46,7 +46,7 @@
                </VBox.margin>
                 </ImageView>
             </children></VBox>
-      <Button alignment="TOP_CENTER" layoutX="71.0" layoutY="211.0" mnemonicParsing="false" onAction="#buybtn_clicked" styleClass="yellow-btn" stylesheets="@../resources/AI.css" text="Add To Collection" textFill="WHITE">
+      <Button alignment="TOP_CENTER" layoutX="71.0" layoutY="226.0" mnemonicParsing="false" onAction="#buybtn_clicked" text="Add To Collection" textFill="WHITE">
          <font>
             <Font name="Arial" size="12.0" />
          </font>

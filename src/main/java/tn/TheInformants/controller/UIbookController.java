@@ -22,7 +22,25 @@ public class UIbookController implements Initializable {
     public GridPane BookListView;
     private List<Book> BookObservableList;
 
+    @FXML
+    private AnchorPane mainanchor;
 
+    @FXML
+    private AnchorPane collectionanchor;
+
+    // Your existing code...
+
+    @FXML
+    private void handleCollectionButtonClick(ActionEvent event) {
+        // Hide the mainanchor and show the collectionanchor
+        mainanchor.setVisible(false);
+        collectionanchor.setVisible(true);
+    }
+    @FXML
+    void booksnavclicked(ActionEvent event) {
+        mainanchor.setVisible(true);
+        collectionanchor.setVisible(false);
+    }
     public UIbookController() throws SQLException {
         ServiceBook serviceBook=ServiceBook.getInstance();
         try {
@@ -35,6 +53,8 @@ public class UIbookController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        collectionanchor.setVisible(false);
+
         int col = 0;
         int rows = 0;
         try {

@@ -17,6 +17,10 @@
     -fx-background-color: transparent; /* Lower opacity */
 
 }
+.yellow-btn{
+    -fx-background-color: #ffc73e; /* Lower opacity */
+  
+}
 .right-form{
 
     -fx-background-color: #f8fbff;}
@@ -61,4 +65,7 @@
 }
 .shadow-left-menu{
     -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.2),30,0,0,0);
+}
+.transparent-scroll-pane {
+    -fx-background-color: white;
 }

@@ -10,6 +10,10 @@ private double total_price;
         this.id_liv = id_liv;
         this.total_price = total_price;
     }
+    public Panier(int id_liv, double total_price) {
+        this.id_liv = id_liv;
+        this.total_price = total_price;
+    }
 
     @Override
     public String toString() {

@@ -21,16 +21,24 @@ import java.util.ResourceBundle;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tn.TheInformants.Entities.Book;
 import tn.TheInformants.Services.ServiceBook;
+import tn.TheInformants.Services.ServicePanier;
 import tn.TheInformants.Utils.*;
 import java.sql.Connection;
 
 public class AddBookController implements Initializable {
+    @FXML
+    AnchorPane updateanchor;
+
+    @FXML
+    AnchorPane addanchor;
+    private List<Book> itemObservableList;
     @FXML
     private ComboBox<String> AvaibilityCombo;
     @FXML
@@ -88,19 +96,48 @@ private String imagePath1;
     private ImageView imgb;
     private ServiceBook serviceBook = new ServiceBook();
     Book mainbook;
+    public AnchorPane getAddAnchor() {
+        return addanchor;
+    }
+    public AddBookController() throws SQLException {
+        ServiceBook serviceBook=ServiceBook.getInstance();
+        try {
+            itemObservableList = serviceBook.recuperer();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        gridPane = new GridPane();
+    }
+    private static AddBookController instance;
+
+    public static AddBookController getInstance() throws SQLException {
+            if(instance==null)
+                instance=new AddBookController();
+            return instance;
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        addanchor.setVisible(true);
+        updateanchor.setVisible(false);
         imgb.setOnMouseClicked(event -> importImage());
-        imgpathstring.setVisible(false);
-        try {
 
-            List<Book> booksList = serviceBook.recuperer();
-            populateGridPane(booksList);
-        } catch (SQLException ex) {
-            ex.printStackTrace(); // Gestion de l'exception SQL
-        } catch (RuntimeException e) {
-            e.printStackTrace(); // Gestion de l'exception Runtime
+        int col = 0;
+        int rows = 0;
+        try {
+            for (int i = 0; i < itemObservableList.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/gui/Admin/itemadminbook.fxml"));
+                System.out.println("dkhalnaaa");
+                AnchorPane anchorPane = fxmlLoader.load();
+                itemadminController ItemadminController = fxmlLoader.getController();
+                ItemadminController.setData(itemObservableList.get(i));
+                gridPane.add(anchorPane,col,rows);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
 
         ObservableList<String> listData = FXCollections.observableArrayList("FICTION", "NON_FICTION", "SCIENCE_FICTION","MYSTERE","AUTRE");
@@ -109,47 +146,11 @@ private String imagePath1;
         AvaibilityCombo.setItems(listDataa);
 
     }
-    private void populateGridPane(List<Book> booksList) {
-
-            for (int i = 0; i < booksList.size(); i++) {
-                Book mainbook = booksList.get(i);  // Corrected variable name
-
-                Label IdLabel = new Label(String.valueOf(mainbook.getId_liv()));
-                Label TitleLabel = new Label(String.valueOf(mainbook.getNom_liv()));
-                Label AvaibilityLabel = new Label(String.valueOf(mainbook.getDisponibilite()));
-                Label CategorieLabel = new Label(String.valueOf(mainbook.getCategorie()));
-                Label PriceLabel = new Label(String.valueOf(mainbook.getPrix_liv()));
-
-                gridPane.add(IdLabel, 0, i);
-                gridPane.add(TitleLabel, 1, i);
-                gridPane.add(AvaibilityLabel, 2, i);
-                gridPane.add(CategorieLabel, 3, i);
-                gridPane.add(PriceLabel, 4, i);
-            }
-        }
 
 
-    private void refreshGridPane(List<Book> booksList) {
-        // Effacer toutes les cellules existantes de la GridPane
-        gridPane.getChildren().clear();
 
-        // Peupler à nouveau la GridPane avec les informations mises à jour
-        populateGridPane(booksList);
-    }
-    private void refreshBookList() {
-        try {
-            // Récupérer la liste mise à jour des cours depuis le service
-            List<Book> booksList = serviceBook.recuperer();
-// Effacer toutes les cellules existantes de la GridPane
-            gridPane.getChildren().clear();
-            // Mettre à jour l'affichage de la liste des cours dans la GridPane
-            populateGridPane(booksList);
-        } catch (SQLException ex) {
-            ex.printStackTrace(); // Gestion de l'exception SQL
-        } catch (RuntimeException e) {
-            e.printStackTrace(); // Gestion de l'exception Runtime
-        }
-    }
+
+
 
     @FXML
     void AddBookBtn(ActionEvent event) {
@@ -191,7 +192,7 @@ private String imagePath1;
                                 showAlert("Success", "Book Added");
 
                                 // Refresh the list of books after successful addition
-                                refreshBookList();
+
                             } catch (SQLException e) {
                                 showAlert("Error", e.getMessage());
                             }
@@ -226,6 +227,8 @@ private String imagePath1;
             alert.showAndWait();
         }
 
+
+
     @FXML
     void BookAdminDashboardBtn(ActionEvent event) {
 
@@ -238,25 +241,7 @@ private String imagePath1;
 
     @FXML
     void DeleteBookBtn(ActionEvent event) {
-        // Obtenir les détails du cours à supprimer
-        int bookIdToDelete = Integer.parseInt(IdL.getText());
-        Book bookToDelete = new Book();
-        bookToDelete.setId_liv(bookIdToDelete);
 
-        // Appeler la méthode de suppression dans le service
-        try {
-            serviceBook.supprimer(bookToDelete);
-
-            // Afficher un message de succès ou effectuer d'autres actions nécessaires après la suppression réussie
-            System.out.println("Le book a été supprimé avec succès.");
-
-            // Rafraîchir le contenu du GridPane après la suppression réussie
-            refreshBookList();
-        } catch (SQLException e) {
-            // Afficher un message d'erreur en cas d'échec de la suppression
-            System.out.println("Erreur lors de la suppression du book : " + e.getMessage());
-            e.printStackTrace();
-        }
 
     }
 
@@ -280,13 +265,36 @@ private String imagePath1;
     }
 
 
+
     @FXML
-    void UpdateBookBtn(ActionEvent event) {
+
+    public void importImage() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+        );
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            try {
+                FileInputStream fileInputStream = new FileInputStream(selectedFile);
+                Image image = new Image(fileInputStream);
+                imgb.setImage(image);
+                imagePath1 = selectedFile.toURI().toString();
+            } catch (FileNotFoundException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Failed to load image: " + e.getMessage());
+                alert.showAndWait();
+            }
+        }
+    }
+
+    public void updatebtnanchor(ActionEvent actionEvent) {
+
         ServiceBook serviceBook1 = new ServiceBook();
         Book book = new Book();
 
         // Récupérer les données du cours à partir de vos champs de texte ou d'autres contrôles
-        book.setId_liv(Integer.parseInt(IdL.getText())); // Supposez que IdTF contient l'ID du cours à mettre à jour
         book.setNom_liv(TitleL.getText());
 
         // Convertir la disponibilité sélectionnée en enum
@@ -315,7 +323,7 @@ private String imagePath1;
             System.out.println("Retrieved Data: " + serviceBook1.recuperer());
 
             // Rafraîchir le contenu du GridPane après la modification réussie
-            refreshGridPane(serviceBook1.recuperer());
+            //refreshGridPane(serviceBook1.recuperer());
         } catch (SQLException e) {
             System.out.println("Erreur lors de la modification du cours : " + e.getMessage());
             e.printStackTrace();
@@ -325,29 +333,9 @@ private String imagePath1;
 
     }
 
-    @FXML
-
-    public void importImage() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
-        );
-        File selectedFile = fileChooser.showOpenDialog(null);
-        if (selectedFile != null) {
-            try {
-                FileInputStream fileInputStream = new FileInputStream(selectedFile);
-                Image image = new Image(fileInputStream);
-                imgb.setImage(image);
-                imagePath1 = selectedFile.toURI().toString();
-            } catch (FileNotFoundException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setContentText("Failed to load image: " + e.getMessage());
-                alert.showAndWait();
-            }
-        }
+    public AnchorPane getUpdateAnchor() {
+        return updateanchor;
     }
-
 }
 
 
