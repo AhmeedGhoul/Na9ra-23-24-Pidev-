@@ -58,12 +58,36 @@ public class ServiceBook implements Iservices<Book> {
 
     @Override
     public void supprimer(Book book) throws SQLException {
-        String sql="DELETE FROM books WHERE id_liv =?";
-        PreparedStatement preparedStatement=connection.prepareStatement(sql);
-        preparedStatement.setInt(1,book.getId_liv());
-        preparedStatement.executeUpdate();
+        try {
+            // Disable auto-commit to start a transaction
+            connection.setAutoCommit(false);
+            // Delete from the "panier" table
+            String deletePanierSql = "DELETE FROM panier WHERE id_liv = ?";
+            try (PreparedStatement deletePanierStatement = connection.prepareStatement(deletePanierSql)) {
+                deletePanierStatement.setInt(1, book.getId_liv());
+                deletePanierStatement.executeUpdate();
+            }
+            // Delete from the "books" table
+            String deleteBooksSql = "DELETE FROM books WHERE id_liv = ?";
+            try (PreparedStatement deleteBooksStatement = connection.prepareStatement(deleteBooksSql)) {
+                deleteBooksStatement.setInt(1, book.getId_liv());
+                deleteBooksStatement.executeUpdate();
+            }
 
+
+
+            // Commit the transaction
+            connection.commit();
+        } catch (SQLException e) {
+            // Rollback the transaction in case of an exception
+            connection.rollback();
+            throw e;
+        } finally {
+            // Enable auto-commit after the operation
+            connection.setAutoCommit(true);
+        }
     }
+
 
     @Override
     public List<Book> recuperer() throws SQLException {

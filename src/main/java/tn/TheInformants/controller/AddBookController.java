@@ -33,8 +33,7 @@ import tn.TheInformants.Utils.*;
 import java.sql.Connection;
 
 public class AddBookController implements Initializable {
-    @FXML
-    AnchorPane updateanchor;
+
 
     @FXML
     AnchorPane addanchor;
@@ -120,8 +119,6 @@ private String imagePath1;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        addanchor.setVisible(true);
-        updateanchor.setVisible(false);
         imgb.setOnMouseClicked(event -> importImage());
 
         int col = 0;
@@ -333,9 +330,7 @@ private String imagePath1;
 
     }
 
-    public AnchorPane getUpdateAnchor() {
-        return updateanchor;
-    }
+
 }
 
 
