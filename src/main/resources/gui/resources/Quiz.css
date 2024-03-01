@@ -6,7 +6,12 @@
 .grid-pane .row {
     -fx-vgap: 20px; /* Vertical gap between rows */
 }
-
+.grid-pane .row > * {
+    -fx-alignment: top-left;
+}
+.bg_score{
+    -fx-background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
+}
 /* Transparent ScrollPane */
 .scroll-pane {
     -fx-background-color: transparent;
@@ -116,7 +121,7 @@
 }
 .mid-menu{
     -fx-border-radius: 50px;
-    -fx-background-radius: 20px;
+    -fx-background-radius: 0 50px 50px 0 ;
 }
 /* Anchor with violet background */
 .anchor-blue {
@@ -147,6 +152,18 @@
 /* Transparent text fields */
 .text-areaa {
     -fx-background-color: transparent;
+        -fx-text-fill: #ffffff;
+        -fx-display-caret:true;
+
+
+
+}
+.bgcount{
+    -fx-background-color: black;
+}
+.text-areaa .content {
+    -fx-background-color: #ffffff;
+
 }
 .text-areaa .text {
     -fx-text-fill: white; /* Text color with low opacity */
@@ -171,6 +188,14 @@
     -fx-border-radius: 5px; /* Border radius */
     -fx-border-width: 1px; /* Border width */
     -fx-border-style: solid; /* Border style */
+
+        -fx-text-fill: #ffffff;
+        -fx-display-caret:true;
+
+
+}
+.text-areaaaa .content {
+    -fx-background-color: #ffffff;
 }
 .text-areaaaa .text {
     -fx-text-fill: white; /* Text color with low opacity */
