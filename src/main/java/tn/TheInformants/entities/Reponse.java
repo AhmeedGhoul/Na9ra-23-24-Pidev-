@@ -1,4 +1,4 @@
-package tn.TheInformants.Entities;
+package tn.TheInformants.entities;
 
 public class Reponse {
     private int id_Reponse;

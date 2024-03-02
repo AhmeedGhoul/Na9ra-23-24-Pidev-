@@ -111,3 +111,11 @@
 
     -fx-effect: dropshadow(three-pass-box,rgba(255, 128, 139,0.7),30,0,0,0);
 }
+.blue-btn{
+    -fx-background-color: #1478FF; /* Lower opacity */
+    -fx-background-radius:10px;
+
+}
+.shadow-blue{
+    -fx-effect: dropshadow(three-pass-box,rgba(20,120,255,0.25),30,0,0,0);
+}

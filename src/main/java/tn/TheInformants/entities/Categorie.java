@@ -1,4 +1,4 @@
-package tn.TheInformants.Entities;
+package tn.TheInformants.entities;
 
 public class Categorie {
     private int id_categorie;

@@ -40,6 +40,9 @@ public class UIController implements Initializable {
     private Button test_btn;
 
     @FXML
+    private Button user_btn;
+
+    @FXML
     private Line l1;
 
     @FXML
@@ -57,6 +60,9 @@ public class UIController implements Initializable {
     @FXML
     private Line l6;
 
+    @FXML
+    private Line l7;
+
 public void Dashboard_btn_clicked(){
     l1.setVisible(true);
     l2.setVisible(false);
@@ -64,40 +70,42 @@ public void Dashboard_btn_clicked(){
     l4.setVisible(false);
     l5.setVisible(false);
     l6.setVisible(false);
+    l7.setVisible(false);
     cours_btn.setStyle("-fx-text-fill: #9b9aac;");
     evenements_btn.setStyle("-fx-text-fill: #9b9aac;");
     quizz_btn.setStyle("-fx-text-fill: #9b9aac;");
     test_btn.setStyle("-fx-text-fill: #9b9aac;");
     Dashboard_btn.setStyle("-fx-text-fill: black;");
     book_btn.setStyle("-fx-text-fill: #9b9aac;");
+    user_btn.setStyle("-fx-text-fill:  #9b9aac;");
 
     // Change the image of the button
-    Image newImage = new Image(getClass().getResourceAsStream("/gui/resources/dashboard5.png"));
+    Image newImage = new Image(getClass().getResourceAsStream("/gui/Rresources/dashboard5.png"));
     ImageView imageView = new ImageView(newImage);
     imageView.setFitWidth(24); // Set width according to your requirement
     imageView.setFitHeight(24); // Set height according to your requirement
     Dashboard_btn.setGraphic(imageView);
-    Image newImage1 = new Image(getClass().getResourceAsStream("/gui/resources/course.png"));
+    Image newImage1 = new Image(getClass().getResourceAsStream("/gui/Rresources/course.png"));
     ImageView imageView1 = new ImageView(newImage1);
     imageView1.setFitWidth(24); // Set width according to your requirement
     imageView1.setFitHeight(24); // Set height according to your requirement
     cours_btn.setGraphic(imageView1);
-    Image newImage2 = new Image(getClass().getResourceAsStream("/gui/resources/event.png"));
+    Image newImage2 = new Image(getClass().getResourceAsStream("/gui/Rresources/event.png"));
     ImageView imageView2 = new ImageView(newImage2);
     imageView2.setFitWidth(24); // Set width according to your requirement
     imageView2.setFitHeight(24); // Set height according to your requirement
     evenements_btn.setGraphic(imageView2);
-    Image newImage3 = new Image(getClass().getResourceAsStream("/gui/resources/test.png"));
+    Image newImage3 = new Image(getClass().getResourceAsStream("/gui/Rresources/test.png"));
     ImageView imageView3 = new ImageView(newImage3);
     imageView3.setFitWidth(24); // Set width according to your requirement
     imageView3.setFitHeight(24); // Set height according to your requirement
     test_btn.setGraphic(imageView3);
-    Image newImage4 = new Image(getClass().getResourceAsStream("/gui/resources/ebook.png"));
+    Image newImage4 = new Image(getClass().getResourceAsStream("/gui/Rresources/ebook.png"));
     ImageView imageView4 = new ImageView(newImage4);
     imageView4.setFitWidth(24); // Set width according to your requirement
     imageView4.setFitHeight(24); // Set height according to your requirement
     book_btn.setGraphic(imageView4);
-    Image newImage5 = new Image(getClass().getResourceAsStream("/gui/resources/quiz.png"));
+    Image newImage5 = new Image(getClass().getResourceAsStream("/gui/Rresources/quiz.png"));
     ImageView imageView5 = new ImageView(newImage5);
     imageView5.setFitWidth(24); // Set width according to your requirement
     imageView5.setFitHeight(24); // Set height according to your requirement
@@ -110,40 +118,42 @@ public void Dashboard_btn_clicked(){
         l4.setVisible(false);
         l5.setVisible(false);
         l6.setVisible(false);
+        l7.setVisible(false);
         cours_btn.setStyle("-fx-text-fill: black;");
         evenements_btn.setStyle("-fx-text-fill: #9b9aac;");
         quizz_btn.setStyle("-fx-text-fill: #9b9aac;");
         test_btn.setStyle("-fx-text-fill: #9b9aac;");
         Dashboard_btn.setStyle("-fx-text-fill: #9b9aac;");
         book_btn.setStyle("-fx-text-fill: #9b9aac;");
+        user_btn.setStyle("-fx-text-fill:  #9b9aac;");
 
         // Change the image of the button
-        Image newImage = new Image(getClass().getResourceAsStream("/gui/resources/dashboard4.png"));
+        Image newImage = new Image(getClass().getResourceAsStream("/gui/Rresources/dashboard4.png"));
         ImageView imageView = new ImageView(newImage);
         imageView.setFitWidth(24); // Set width according to your requirement
         imageView.setFitHeight(24); // Set height according to your requirement
         Dashboard_btn.setGraphic(imageView);
-        Image newImage1 = new Image(getClass().getResourceAsStream("/gui/resources/course2.png"));
+        Image newImage1 = new Image(getClass().getResourceAsStream("/gui/Rresources/course2.png"));
         ImageView imageView1 = new ImageView(newImage1);
         imageView1.setFitWidth(24); // Set width according to your requirement
         imageView1.setFitHeight(24); // Set height according to your requirement
         cours_btn.setGraphic(imageView1);
-        Image newImage2 = new Image(getClass().getResourceAsStream("/gui/resources/event.png"));
+        Image newImage2 = new Image(getClass().getResourceAsStream("/gui/Rresources/event.png"));
         ImageView imageView2 = new ImageView(newImage2);
         imageView2.setFitWidth(24); // Set width according to your requirement
         imageView2.setFitHeight(24); // Set height according to your requirement
         evenements_btn.setGraphic(imageView2);
-        Image newImage3 = new Image(getClass().getResourceAsStream("/gui/resources/test.png"));
+        Image newImage3 = new Image(getClass().getResourceAsStream("/gui/Rresources/test.png"));
         ImageView imageView3 = new ImageView(newImage3);
         imageView3.setFitWidth(24); // Set width according to your requirement
         imageView3.setFitHeight(24); // Set height according to your requirement
         test_btn.setGraphic(imageView3);
-        Image newImage4 = new Image(getClass().getResourceAsStream("/gui/resources/ebook.png"));
+        Image newImage4 = new Image(getClass().getResourceAsStream("/gui/Rresources/ebook.png"));
         ImageView imageView4 = new ImageView(newImage4);
         imageView4.setFitWidth(24); // Set width according to your requirement
         imageView4.setFitHeight(24); // Set height according to your requirement
         book_btn.setGraphic(imageView4);
-        Image newImage5 = new Image(getClass().getResourceAsStream("/gui/resources/quiz.png"));
+        Image newImage5 = new Image(getClass().getResourceAsStream("/gui/Rresources/quiz.png"));
         ImageView imageView5 = new ImageView(newImage5);
         imageView5.setFitWidth(24); // Set width according to your requirement
         imageView5.setFitHeight(24); // Set height according to your requirement
@@ -156,6 +166,8 @@ public void Dashboard_btn_clicked(){
         l4.setVisible(false);
         l5.setVisible(false);
         l6.setVisible(false);
+        l7.setVisible(false);
+        user_btn.setStyle("-fx-text-fill:  #9b9aac;");
         cours_btn.setStyle("-fx-text-fill: #9b9aac;");
         evenements_btn.setStyle("-fx-text-fill: black;");
         quizz_btn.setStyle("-fx-text-fill: #9b9aac;");
@@ -164,32 +176,32 @@ public void Dashboard_btn_clicked(){
         book_btn.setStyle("-fx-text-fill: #9b9aac;");
 
         // Change the image of the button
-        Image newImage = new Image(getClass().getResourceAsStream("/gui/resources/dashboard4.png"));
+        Image newImage = new Image(getClass().getResourceAsStream("/gui/Rresources/dashboard4.png"));
         ImageView imageView = new ImageView(newImage);
         imageView.setFitWidth(24); // Set width according to your requirement
         imageView.setFitHeight(24); // Set height according to your requirement
         Dashboard_btn.setGraphic(imageView);
-        Image newImage1 = new Image(getClass().getResourceAsStream("/gui/resources/course.png"));
+        Image newImage1 = new Image(getClass().getResourceAsStream("/gui/Rresources/course.png"));
         ImageView imageView1 = new ImageView(newImage1);
         imageView1.setFitWidth(24); // Set width according to your requirement
         imageView1.setFitHeight(24); // Set height according to your requirement
         cours_btn.setGraphic(imageView1);
-        Image newImage2 = new Image(getClass().getResourceAsStream("/gui/resources/event2.png"));
+        Image newImage2 = new Image(getClass().getResourceAsStream("/gui/Rresources/event2.png"));
         ImageView imageView2 = new ImageView(newImage2);
         imageView2.setFitWidth(24); // Set width according to your requirement
         imageView2.setFitHeight(24); // Set height according to your requirement
         evenements_btn.setGraphic(imageView2);
-        Image newImage3 = new Image(getClass().getResourceAsStream("/gui/resources/test.png"));
+        Image newImage3 = new Image(getClass().getResourceAsStream("/gui/Rresources/test.png"));
         ImageView imageView3 = new ImageView(newImage3);
         imageView3.setFitWidth(24); // Set width according to your requirement
         imageView3.setFitHeight(24); // Set height according to your requirement
         test_btn.setGraphic(imageView3);
-        Image newImage4 = new Image(getClass().getResourceAsStream("/gui/resources/ebook.png"));
+        Image newImage4 = new Image(getClass().getResourceAsStream("/gui/Rresources/ebook.png"));
         ImageView imageView4 = new ImageView(newImage4);
         imageView4.setFitWidth(24); // Set width according to your requirement
         imageView4.setFitHeight(24); // Set height according to your requirement
         book_btn.setGraphic(imageView4);
-        Image newImage5 = new Image(getClass().getResourceAsStream("/gui/resources/quiz.png"));
+        Image newImage5 = new Image(getClass().getResourceAsStream("/gui/Rresources/quiz.png"));
         ImageView imageView5 = new ImageView(newImage5);
         imageView5.setFitWidth(24); // Set width according to your requirement
         imageView5.setFitHeight(24); // Set height according to your requirement
@@ -202,40 +214,42 @@ public void Dashboard_btn_clicked(){
         l4.setVisible(false);
         l5.setVisible(true);
         l6.setVisible(false);
+        l7.setVisible(false);
         cours_btn.setStyle("-fx-text-fill: #9b9aac;");
         evenements_btn.setStyle("-fx-text-fill: #9b9aac;");
         quizz_btn.setStyle("-fx-text-fill: #9b9aac;");
         test_btn.setStyle("-fx-text-fill: #9b9aac;");
         Dashboard_btn.setStyle("-fx-text-fill:  #9b9aac;");
         book_btn.setStyle("-fx-text-fill: black;");
+        user_btn.setStyle("-fx-text-fill:  #9b9aac;");
 
         // Change the image of the button
-        Image newImage = new Image(getClass().getResourceAsStream("/gui/resources/dashboard4.png"));
+        Image newImage = new Image(getClass().getResourceAsStream("/gui/Rresources/dashboard4.png"));
         ImageView imageView = new ImageView(newImage);
         imageView.setFitWidth(24); // Set width according to your requirement
         imageView.setFitHeight(24); // Set height according to your requirement
         Dashboard_btn.setGraphic(imageView);
-        Image newImage1 = new Image(getClass().getResourceAsStream("/gui/resources/course.png"));
+        Image newImage1 = new Image(getClass().getResourceAsStream("/gui/Rresources/course.png"));
         ImageView imageView1 = new ImageView(newImage1);
         imageView1.setFitWidth(24); // Set width according to your requirement
         imageView1.setFitHeight(24); // Set height according to your requirement
         cours_btn.setGraphic(imageView1);
-        Image newImage2 = new Image(getClass().getResourceAsStream("/gui/resources/event.png"));
+        Image newImage2 = new Image(getClass().getResourceAsStream("/gui/Rresources/event.png"));
         ImageView imageView2 = new ImageView(newImage2);
         imageView2.setFitWidth(24); // Set width according to your requirement
         imageView2.setFitHeight(24); // Set height according to your requirement
         evenements_btn.setGraphic(imageView2);
-        Image newImage3 = new Image(getClass().getResourceAsStream("/gui/resources/test.png"));
+        Image newImage3 = new Image(getClass().getResourceAsStream("/gui/Rresources/test.png"));
         ImageView imageView3 = new ImageView(newImage3);
         imageView3.setFitWidth(24); // Set width according to your requirement
         imageView3.setFitHeight(24); // Set height according to your requirement
         test_btn.setGraphic(imageView3);
-        Image newImage4 = new Image(getClass().getResourceAsStream("/gui/resources/book2.png"));
+        Image newImage4 = new Image(getClass().getResourceAsStream("/gui/Rresources/book2.png"));
         ImageView imageView4 = new ImageView(newImage4);
         imageView4.setFitWidth(24); // Set width according to your requirement
         imageView4.setFitHeight(24); // Set height according to your requirement
         book_btn.setGraphic(imageView4);
-        Image newImage5 = new Image(getClass().getResourceAsStream("/gui/resources/quiz.png"));
+        Image newImage5 = new Image(getClass().getResourceAsStream("/gui/Rresources/quiz.png"));
         ImageView imageView5 = new ImageView(newImage5);
         imageView5.setFitWidth(24); // Set width according to your requirement
         imageView5.setFitHeight(24); // Set height according to your requirement
@@ -248,40 +262,42 @@ public void Dashboard_btn_clicked(){
         l4.setVisible(true);
         l5.setVisible(false);
         l6.setVisible(false);
+        l7.setVisible(false);
         cours_btn.setStyle("-fx-text-fill: #9b9aac;");
         evenements_btn.setStyle("-fx-text-fill: #9b9aac;");
         quizz_btn.setStyle("-fx-text-fill: #9b9aac;");
         test_btn.setStyle("-fx-text-fill: black;");
         Dashboard_btn.setStyle("-fx-text-fill: #9b9aac;");
         book_btn.setStyle("-fx-text-fill: #9b9aac;");
+        user_btn.setStyle("-fx-text-fill:  #9b9aac;");
 
         // Change the image of the button
-        Image newImage = new Image(getClass().getResourceAsStream("/gui/resources/dashboard4.png"));
+        Image newImage = new Image(getClass().getResourceAsStream("/gui/Rresources/dashboard4.png"));
         ImageView imageView = new ImageView(newImage);
         imageView.setFitWidth(24); // Set width according to your requirement
         imageView.setFitHeight(24); // Set height according to your requirement
         Dashboard_btn.setGraphic(imageView);
-        Image newImage1 = new Image(getClass().getResourceAsStream("/gui/resources/course.png"));
+        Image newImage1 = new Image(getClass().getResourceAsStream("/gui/Rresources/course.png"));
         ImageView imageView1 = new ImageView(newImage1);
         imageView1.setFitWidth(24); // Set width according to your requirement
         imageView1.setFitHeight(24); // Set height according to your requirement
         cours_btn.setGraphic(imageView1);
-        Image newImage2 = new Image(getClass().getResourceAsStream("/gui/resources/event.png"));
+        Image newImage2 = new Image(getClass().getResourceAsStream("/gui/Rresources/event.png"));
         ImageView imageView2 = new ImageView(newImage2);
         imageView2.setFitWidth(24); // Set width according to your requirement
         imageView2.setFitHeight(24); // Set height according to your requirement
         evenements_btn.setGraphic(imageView2);
-        Image newImage3 = new Image(getClass().getResourceAsStream("/gui/resources/test2.png"));
+        Image newImage3 = new Image(getClass().getResourceAsStream("/gui/Rresources/test2.png"));
         ImageView imageView3 = new ImageView(newImage3);
         imageView3.setFitWidth(24); // Set width according to your requirement
         imageView3.setFitHeight(24); // Set height according to your requirement
         test_btn.setGraphic(imageView3);
-        Image newImage4 = new Image(getClass().getResourceAsStream("/gui/resources/ebook.png"));
+        Image newImage4 = new Image(getClass().getResourceAsStream("/gui/Rresources/ebook.png"));
         ImageView imageView4 = new ImageView(newImage4);
         imageView4.setFitWidth(24); // Set width according to your requirement
         imageView4.setFitHeight(24); // Set height according to your requirement
         book_btn.setGraphic(imageView4);
-        Image newImage5 = new Image(getClass().getResourceAsStream("/gui/resources/quiz.png"));
+        Image newImage5 = new Image(getClass().getResourceAsStream("/gui/Rresources/quiz.png"));
         ImageView imageView5 = new ImageView(newImage5);
         imageView5.setFitWidth(24); // Set width according to your requirement
         imageView5.setFitHeight(24); // Set height according to your requirement
@@ -294,6 +310,8 @@ public void Dashboard_btn_clicked(){
         l4.setVisible(false);
         l5.setVisible(false);
         l6.setVisible(true);
+        l7.setVisible(false);
+        user_btn.setStyle("-fx-text-fill:  #9b9aac;");
         cours_btn.setStyle("-fx-text-fill: #9b9aac;");
         evenements_btn.setStyle("-fx-text-fill: #9b9aac;");
         quizz_btn.setStyle("-fx-text-fill:black;");
@@ -302,37 +320,88 @@ public void Dashboard_btn_clicked(){
         book_btn.setStyle("-fx-text-fill: #9b9aac;");
 
         // Change the image of the button
-        Image newImage = new Image(getClass().getResourceAsStream("/gui/resources/dashboard4.png"));
+        Image newImage = new Image(getClass().getResourceAsStream("/gui/Rresources/dashboard4.png"));
         ImageView imageView = new ImageView(newImage);
         imageView.setFitWidth(24); // Set width according to your requirement
         imageView.setFitHeight(24); // Set height according to your requirement
         Dashboard_btn.setGraphic(imageView);
-        Image newImage1 = new Image(getClass().getResourceAsStream("/gui/resources/course.png"));
+        Image newImage1 = new Image(getClass().getResourceAsStream("/gui/Rresources/course.png"));
         ImageView imageView1 = new ImageView(newImage1);
         imageView1.setFitWidth(24); // Set width according to your requirement
         imageView1.setFitHeight(24); // Set height according to your requirement
         cours_btn.setGraphic(imageView1);
-        Image newImage2 = new Image(getClass().getResourceAsStream("/gui/resources/event.png"));
+        Image newImage2 = new Image(getClass().getResourceAsStream("/gui/Rresources/event.png"));
         ImageView imageView2 = new ImageView(newImage2);
         imageView2.setFitWidth(24); // Set width according to your requirement
         imageView2.setFitHeight(24); // Set height according to your requirement
         evenements_btn.setGraphic(imageView2);
-        Image newImage3 = new Image(getClass().getResourceAsStream("/gui/resources/test.png"));
+        Image newImage3 = new Image(getClass().getResourceAsStream("/gui/Rresources/test.png"));
         ImageView imageView3 = new ImageView(newImage3);
         imageView3.setFitWidth(24); // Set width according to your requirement
         imageView3.setFitHeight(24); // Set height according to your requirement
         test_btn.setGraphic(imageView3);
-        Image newImage4 = new Image(getClass().getResourceAsStream("/gui/resources/ebook.png"));
+        Image newImage4 = new Image(getClass().getResourceAsStream("/gui/Rresources/ebook.png"));
         ImageView imageView4 = new ImageView(newImage4);
         imageView4.setFitWidth(24); // Set width according to your requirement
         imageView4.setFitHeight(24); // Set height according to your requirement
         book_btn.setGraphic(imageView4);
-        Image newImage5 = new Image(getClass().getResourceAsStream("/gui/resources/quizz2.png"));
+        Image newImage5 = new Image(getClass().getResourceAsStream("/gui/Rresources/quizz2.png"));
         ImageView imageView5 = new ImageView(newImage5);
         imageView5.setFitWidth(24); // Set width according to your requirement
         imageView5.setFitHeight(24); // Set height according to your requirement
         quizz_btn.setGraphic(imageView5);
     }
+    @FXML
+    void user_btn_clicked() {
+        l1.setVisible(false);
+        l2.setVisible(false);
+        l3.setVisible(false);
+        l4.setVisible(false);
+        l5.setVisible(false);
+        l6.setVisible(false);
+        l7.setVisible(true);
+        user_btn.setStyle("-fx-text-fill:  black;");
+        cours_btn.setStyle("-fx-text-fill: #9b9aac;");
+        evenements_btn.setStyle("-fx-text-fill: #9b9aac;");
+        quizz_btn.setStyle("-fx-text-fill:#9b9aac;");
+        test_btn.setStyle("-fx-text-fill: #9b9aac;");
+        Dashboard_btn.setStyle("-fx-text-fill: #9b9aac;");
+        book_btn.setStyle("-fx-text-fill: #9b9aac;");
+
+        // Change the image of the button
+        Image newImage = new Image(getClass().getResourceAsStream("/gui/Rresources/dashboard4.png"));
+        ImageView imageView = new ImageView(newImage);
+        imageView.setFitWidth(24); // Set width according to your requirement
+        imageView.setFitHeight(24); // Set height according to your requirement
+        Dashboard_btn.setGraphic(imageView);
+        Image newImage1 = new Image(getClass().getResourceAsStream("/gui/Rresources/course.png"));
+        ImageView imageView1 = new ImageView(newImage1);
+        imageView1.setFitWidth(24); // Set width according to your requirement
+        imageView1.setFitHeight(24); // Set height according to your requirement
+        cours_btn.setGraphic(imageView1);
+        Image newImage2 = new Image(getClass().getResourceAsStream("/gui/Rresources/event.png"));
+        ImageView imageView2 = new ImageView(newImage2);
+        imageView2.setFitWidth(24); // Set width according to your requirement
+        imageView2.setFitHeight(24); // Set height according to your requirement
+        evenements_btn.setGraphic(imageView2);
+        Image newImage3 = new Image(getClass().getResourceAsStream("/gui/Rresources/test.png"));
+        ImageView imageView3 = new ImageView(newImage3);
+        imageView3.setFitWidth(24); // Set width according to your requirement
+        imageView3.setFitHeight(24); // Set height according to your requirement
+        test_btn.setGraphic(imageView3);
+        Image newImage4 = new Image(getClass().getResourceAsStream("/gui/Rresources/ebook.png"));
+        ImageView imageView4 = new ImageView(newImage4);
+        imageView4.setFitWidth(24); // Set width according to your requirement
+        imageView4.setFitHeight(24); // Set height according to your requirement
+        book_btn.setGraphic(imageView4);
+        Image newImage5 = new Image(getClass().getResourceAsStream("/gui/Rresources/quizz2.png"));
+        ImageView imageView5 = new ImageView(newImage5);
+        imageView5.setFitWidth(24); // Set width according to your requirement
+        imageView5.setFitHeight(24); // Set height according to your requirement
+        quizz_btn.setGraphic(imageView5);
+    }
+
+
 
     public void logout() throws IOException {
 //        logout_btn.getScene().getWindow().hide();
@@ -350,14 +419,16 @@ public void Dashboard_btn_clicked(){
         l4.setVisible(false);
         l5.setVisible(false);
         l6.setVisible(false);
-        FXMLLoader fxmlLoader121 = new FXMLLoader(getClass().getResource("/gui/User/DashboardUI.fxml"));
+        l7.setVisible(false);
+        FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("/gui/User/DashboardUI.fxml"));
         try {
-            Parent p = (Parent) fxmlLoader121.load();
+            Parent p = (Parent) fxmlLoader1.load();
             midlast.getChildren().clear();
             midlast.getChildren().add(p);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
+
         cours_btn.setOnMouseClicked(e -> {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/User/CourseUI.fxml"));
             try {
@@ -410,6 +481,16 @@ public void Dashboard_btn_clicked(){
         });
         quizz_btn.setOnMouseClicked(e -> {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/User/QuizUI.fxml"));
+            try {
+                Parent p = (Parent) fxmlLoader.load();
+                midlast.getChildren().clear();
+                midlast.getChildren().add(p);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+       user_btn.setOnMouseClicked(e -> {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/User/userUI.fxml"));
             try {
                 Parent p = (Parent) fxmlLoader.load();
                 midlast.getChildren().clear();

@@ -53,6 +53,7 @@ public class AIController implements Initializable {
 
     @FXML
     private Label test_label;
+    @FXML
     public void Dashboard_btn_clicked(){
         Dashboard_btn.setStyle("-fx-background-color: #1478FF;  -fx-effect: dropshadow(three-pass-box,rgba(20,120,255,0.5),30,0,0,0);");
         Dashboard_label.setStyle("-fx-text-fill: #1478FF;");
@@ -69,32 +70,32 @@ public class AIController implements Initializable {
         quiz_label.setStyle("-fx-text-fill: black;");
         test_label.setStyle("-fx-text-fill: black;");
         Events_label.setStyle("-fx-text-fill: black;");
-        Image newImage = new Image(getClass().getResourceAsStream("/gui/resources/dashboard1.png"));
+        Image newImage = new Image(getClass().getResourceAsStream("/gui/Rresources/dashboard1.png"));
         ImageView imageView = new ImageView(newImage);
         imageView.setFitWidth(24); // Set width according to your requirement
         imageView.setFitHeight(24);
         Dashboard_btn.setGraphic(imageView);
-        Image newImage1 = new Image(getClass().getResourceAsStream("/gui/resources/course2.png"));
+        Image newImage1 = new Image(getClass().getResourceAsStream("/gui/Rresources/course2.png"));
         ImageView imageView1 = new ImageView(newImage1);
         imageView1.setFitWidth(24); // Set width according to your requirement
         imageView1.setFitHeight(24);
         cours_btn.setGraphic(imageView1);
-        Image newImage2 = new Image(getClass().getResourceAsStream("/gui/resources/event2.png"));
+        Image newImage2 = new Image(getClass().getResourceAsStream("/gui/Rresources/event2.png"));
         ImageView imageView2 = new ImageView(newImage2);
         imageView2.setFitWidth(24); // Set width according to your requirement
         imageView2.setFitHeight(24);
         evenements_btn.setGraphic(imageView2);
-        Image newImage3 = new Image(getClass().getResourceAsStream("/gui/resources/quizz2.png"));
+        Image newImage3 = new Image(getClass().getResourceAsStream("/gui/Rresources/quizz2.png"));
         ImageView imageView3 = new ImageView(newImage3);
         imageView3.setFitWidth(24); // Set width according to your requirement
         imageView3.setFitHeight(24);
         quizz_btn.setGraphic(imageView3);
-        Image newImage4 = new Image(getClass().getResourceAsStream("/gui/resources/test2.png"));
+        Image newImage4 = new Image(getClass().getResourceAsStream("/gui/Rresources/test2.png"));
         ImageView imageView4 = new ImageView(newImage4);
         imageView4.setFitWidth(24); // Set width according to your requirement
         imageView4.setFitHeight(24);
         test_btn.setGraphic(imageView4);
-        Image newImage5 = new Image(getClass().getResourceAsStream("/gui/resources/book2.png"));
+        Image newImage5 = new Image(getClass().getResourceAsStream("/gui/Rresources/book2.png"));
         ImageView imageView5 = new ImageView(newImage5);
         imageView5.setFitWidth(24); // Set width according to your requirement
         imageView5.setFitHeight(24);
@@ -117,32 +118,32 @@ public class AIController implements Initializable {
         quiz_label.setStyle("-fx-text-fill: black;");
         test_label.setStyle("-fx-text-fill: black;");
         Events_label.setStyle("-fx-text-fill: black;");
-        Image newImage = new Image(getClass().getResourceAsStream("/gui/resources/dashboard.png"));
+        Image newImage = new Image(getClass().getResourceAsStream("/gui/Rresources/dashboard.png"));
         ImageView imageView = new ImageView(newImage);
         imageView.setFitWidth(24); // Set width according to your requirement
         imageView.setFitHeight(24);
         Dashboard_btn.setGraphic(imageView);
-        Image newImage1 = new Image(getClass().getResourceAsStream("/gui/resources/course2.png"));
+        Image newImage1 = new Image(getClass().getResourceAsStream("/gui/Rresources/course2.png"));
         ImageView imageView1 = new ImageView(newImage1);
         imageView1.setFitWidth(24); // Set width according to your requirement
         imageView1.setFitHeight(24);
         cours_btn.setGraphic(imageView1);
-        Image newImage2 = new Image(getClass().getResourceAsStream("/gui/resources/event2.png"));
+        Image newImage2 = new Image(getClass().getResourceAsStream("/gui/Rresources/event2.png"));
         ImageView imageView2 = new ImageView(newImage2);
         imageView2.setFitWidth(24); // Set width according to your requirement
         imageView2.setFitHeight(24);
         evenements_btn.setGraphic(imageView2);
-        Image newImage3 = new Image(getClass().getResourceAsStream("/gui/resources/quizz2.png"));
+        Image newImage3 = new Image(getClass().getResourceAsStream("/gui/Rresources/quizz2.png"));
         ImageView imageView3 = new ImageView(newImage3);
         imageView3.setFitWidth(24); // Set width according to your requirement
         imageView3.setFitHeight(24);
         quizz_btn.setGraphic(imageView3);
-        Image newImage4 = new Image(getClass().getResourceAsStream("/gui/resources/test2.png"));
+        Image newImage4 = new Image(getClass().getResourceAsStream("/gui/Rresources/test2.png"));
         ImageView imageView4 = new ImageView(newImage4);
         imageView4.setFitWidth(24); // Set width according to your requirement
         imageView4.setFitHeight(24);
         test_btn.setGraphic(imageView4);
-        Image newImage5 = new Image(getClass().getResourceAsStream("/gui/resources/book3.png"));
+        Image newImage5 = new Image(getClass().getResourceAsStream("/gui/Rresources/book3.png"));
         ImageView imageView5 = new ImageView(newImage5);
         imageView5.setFitWidth(24); // Set width according to your requirement
         imageView5.setFitHeight(24);
@@ -166,32 +167,32 @@ public class AIController implements Initializable {
         quiz_label.setStyle("-fx-text-fill: black;");
         test_label.setStyle("-fx-text-fill: black;");
         Events_label.setStyle("-fx-text-fill: black;");
-        Image newImage = new Image(getClass().getResourceAsStream("/gui/resources/dashboard.png"));
+        Image newImage = new Image(getClass().getResourceAsStream("/gui/Rresources/dashboard.png"));
         ImageView imageView = new ImageView(newImage);
         imageView.setFitWidth(24); // Set width according to your requirement
         imageView.setFitHeight(24);
         Dashboard_btn.setGraphic(imageView);
-        Image newImage1 = new Image(getClass().getResourceAsStream("/gui/resources/course3.png"));
+        Image newImage1 = new Image(getClass().getResourceAsStream("/gui/Rresources/course3.png"));
         ImageView imageView1 = new ImageView(newImage1);
         imageView1.setFitWidth(24); // Set width according to your requirement
         imageView1.setFitHeight(24);
         cours_btn.setGraphic(imageView1);
-        Image newImage2 = new Image(getClass().getResourceAsStream("/gui/resources/event2.png"));
+        Image newImage2 = new Image(getClass().getResourceAsStream("/gui/Rresources/event2.png"));
         ImageView imageView2 = new ImageView(newImage2);
         imageView2.setFitWidth(24); // Set width according to your requirement
         imageView2.setFitHeight(24);
         evenements_btn.setGraphic(imageView2);
-        Image newImage3 = new Image(getClass().getResourceAsStream("/gui/resources/quizz2.png"));
+        Image newImage3 = new Image(getClass().getResourceAsStream("/gui/Rresources/quizz2.png"));
         ImageView imageView3 = new ImageView(newImage3);
         imageView3.setFitWidth(24); // Set width according to your requirement
         imageView3.setFitHeight(24);
         quizz_btn.setGraphic(imageView3);
-        Image newImage4 = new Image(getClass().getResourceAsStream("/gui/resources/test2.png"));
+        Image newImage4 = new Image(getClass().getResourceAsStream("/gui/Rresources/test2.png"));
         ImageView imageView4 = new ImageView(newImage4);
         imageView4.setFitWidth(24); // Set width according to your requirement
         imageView4.setFitHeight(24);
         test_btn.setGraphic(imageView4);
-        Image newImage5 = new Image(getClass().getResourceAsStream("/gui/resources/book2.png"));
+        Image newImage5 = new Image(getClass().getResourceAsStream("/gui/Rresources/book2.png"));
         ImageView imageView5 = new ImageView(newImage5);
         imageView5.setFitWidth(24); // Set width according to your requirement
         imageView5.setFitHeight(24);
@@ -215,32 +216,32 @@ public class AIController implements Initializable {
         quiz_label.setStyle("-fx-text-fill: black;");
         test_label.setStyle("-fx-text-fill: black;");
         Events_label.setStyle("-fx-text-fill: #1478FF;");
-        Image newImage = new Image(getClass().getResourceAsStream("/gui/resources/dashboard.png"));
+        Image newImage = new Image(getClass().getResourceAsStream("/gui/Rresources/dashboard.png"));
         ImageView imageView = new ImageView(newImage);
         imageView.setFitWidth(24); // Set width according to your requirement
         imageView.setFitHeight(24);
         Dashboard_btn.setGraphic(imageView);
-        Image newImage1 = new Image(getClass().getResourceAsStream("/gui/resources/course2.png"));
+        Image newImage1 = new Image(getClass().getResourceAsStream("/gui/Rresources/course2.png"));
         ImageView imageView1 = new ImageView(newImage1);
         imageView1.setFitWidth(24); // Set width according to your requirement
         imageView1.setFitHeight(24);
         cours_btn.setGraphic(imageView1);
-        Image newImage2 = new Image(getClass().getResourceAsStream("/gui/resources/event3.png"));
+        Image newImage2 = new Image(getClass().getResourceAsStream("/gui/Rresources/event3.png"));
         ImageView imageView2 = new ImageView(newImage2);
         imageView2.setFitWidth(24); // Set width according to your requirement
         imageView2.setFitHeight(24);
         evenements_btn.setGraphic(imageView2);
-        Image newImage3 = new Image(getClass().getResourceAsStream("/gui/resources/quizz2.png"));
+        Image newImage3 = new Image(getClass().getResourceAsStream("/gui/Rresources/quizz2.png"));
         ImageView imageView3 = new ImageView(newImage3);
         imageView3.setFitWidth(24); // Set width according to your requirement
         imageView3.setFitHeight(24);
         quizz_btn.setGraphic(imageView3);
-        Image newImage4 = new Image(getClass().getResourceAsStream("/gui/resources/test2.png"));
+        Image newImage4 = new Image(getClass().getResourceAsStream("/gui/Rresources/test2.png"));
         ImageView imageView4 = new ImageView(newImage4);
         imageView4.setFitWidth(24); // Set width according to your requirement
         imageView4.setFitHeight(24);
         test_btn.setGraphic(imageView4);
-        Image newImage5 = new Image(getClass().getResourceAsStream("/gui/resources/book2.png"));
+        Image newImage5 = new Image(getClass().getResourceAsStream("/gui/Rresources/book2.png"));
         ImageView imageView5 = new ImageView(newImage5);
         imageView5.setFitWidth(24); // Set width according to your requirement
         imageView5.setFitHeight(24);
@@ -264,32 +265,32 @@ public class AIController implements Initializable {
         quiz_label.setStyle("-fx-text-fill: #1478FF;");
         test_label.setStyle("-fx-text-fill: black;");
         Events_label.setStyle("-fx-text-fill: black;");
-        Image newImage = new Image(getClass().getResourceAsStream("/gui/resources/dashboard.png"));
+        Image newImage = new Image(getClass().getResourceAsStream("/gui/Rresources/dashboard.png"));
         ImageView imageView = new ImageView(newImage);
         imageView.setFitWidth(24); // Set width according to your requirement
         imageView.setFitHeight(24);
         Dashboard_btn.setGraphic(imageView);
-        Image newImage1 = new Image(getClass().getResourceAsStream("/gui/resources/course2.png"));
+        Image newImage1 = new Image(getClass().getResourceAsStream("/gui/Rresources/course2.png"));
         ImageView imageView1 = new ImageView(newImage1);
         imageView1.setFitWidth(24); // Set width according to your requirement
         imageView1.setFitHeight(24);
         cours_btn.setGraphic(imageView1);
-        Image newImage2 = new Image(getClass().getResourceAsStream("/gui/resources/event2.png"));
+        Image newImage2 = new Image(getClass().getResourceAsStream("/gui/Rresources/event2.png"));
         ImageView imageView2 = new ImageView(newImage2);
         imageView2.setFitWidth(24); // Set width according to your requirement
         imageView2.setFitHeight(24);
         evenements_btn.setGraphic(imageView2);
-        Image newImage3 = new Image(getClass().getResourceAsStream("/gui/resources/quizz3.png"));
+        Image newImage3 = new Image(getClass().getResourceAsStream("/gui/Rresources/quizz3.png"));
         ImageView imageView3 = new ImageView(newImage3);
         imageView3.setFitWidth(24); // Set width according to your requirement
         imageView3.setFitHeight(24);
         quizz_btn.setGraphic(imageView3);
-        Image newImage4 = new Image(getClass().getResourceAsStream("/gui/resources/test2.png"));
+        Image newImage4 = new Image(getClass().getResourceAsStream("/gui/Rresources/test2.png"));
         ImageView imageView4 = new ImageView(newImage4);
         imageView4.setFitWidth(24); // Set width according to your requirement
         imageView4.setFitHeight(24);
         test_btn.setGraphic(imageView4);
-        Image newImage5 = new Image(getClass().getResourceAsStream("/gui/resources/book2.png"));
+        Image newImage5 = new Image(getClass().getResourceAsStream("/gui/Rresources/book2.png"));
         ImageView imageView5 = new ImageView(newImage5);
         imageView5.setFitWidth(24); // Set width according to your requirement
         imageView5.setFitHeight(24);
@@ -313,42 +314,44 @@ public class AIController implements Initializable {
         quiz_label.setStyle("-fx-text-fill: black;");
         test_label.setStyle("-fx-text-fill: #1478FF;");
         Events_label.setStyle("-fx-text-fill: black;");
-        Image newImage = new Image(getClass().getResourceAsStream("/gui/resources/dashboard.png"));
+        Image newImage = new Image(getClass().getResourceAsStream("/gui/Rresources/dashboard.png"));
         ImageView imageView = new ImageView(newImage);
         imageView.setFitWidth(24); // Set width according to your requirement
         imageView.setFitHeight(24);
         Dashboard_btn.setGraphic(imageView);
-        Image newImage1 = new Image(getClass().getResourceAsStream("/gui/resources/course2.png"));
+        Image newImage1 = new Image(getClass().getResourceAsStream("/gui/Rresources/course2.png"));
         ImageView imageView1 = new ImageView(newImage1);
         imageView1.setFitWidth(24); // Set width according to your requirement
         imageView1.setFitHeight(24);
         cours_btn.setGraphic(imageView1);
-        Image newImage2 = new Image(getClass().getResourceAsStream("/gui/resources/event2.png"));
+        Image newImage2 = new Image(getClass().getResourceAsStream("/gui/Rresources/event2.png"));
         ImageView imageView2 = new ImageView(newImage2);
         imageView2.setFitWidth(24); // Set width according to your requirement
         imageView2.setFitHeight(24);
         evenements_btn.setGraphic(imageView2);
-        Image newImage3 = new Image(getClass().getResourceAsStream("/gui/resources/quizz2.png"));
+        Image newImage3 = new Image(getClass().getResourceAsStream("/gui/Rresources/quizz2.png"));
         ImageView imageView3 = new ImageView(newImage3);
         imageView3.setFitWidth(24); // Set width according to your requirement
         imageView3.setFitHeight(24);
         quizz_btn.setGraphic(imageView3);
-        Image newImage4 = new Image(getClass().getResourceAsStream("/gui/resources/test3.png"));
+        Image newImage4 = new Image(getClass().getResourceAsStream("/gui/Rresources/test3.png"));
         ImageView imageView4 = new ImageView(newImage4);
         imageView4.setFitWidth(24); // Set width according to your requirement
         imageView4.setFitHeight(24);
         test_btn.setGraphic(imageView4);
-        Image newImage5 = new Image(getClass().getResourceAsStream("/gui/resources/book2.png"));
+        Image newImage5 = new Image(getClass().getResourceAsStream("/gui/Rresources/book2.png"));
         ImageView imageView5 = new ImageView(newImage5);
         imageView5.setFitWidth(24); // Set width according to your requirement
         imageView5.setFitHeight(24);
         book_btn.setGraphic(imageView5);
     }
+    @FXML
     public void logout()  {
 System.exit(0);
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
 
         FXMLLoader fxmlLoader121 = new FXMLLoader(getClass().getResource("/gui/Admin/DashboardUI.fxml"));
         try {

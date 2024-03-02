@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -15,7 +14,7 @@ import java.io.IOException;
 public class Na9ra extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Na9ra.class.getResource("/gui/sharedInterface/UI.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Na9ra.class.getResource("/gui/sharedInterface/login.fxml"));
         Parent root = fxmlLoader.load();
 
         // Create a scene with transparent fill
@@ -23,7 +22,7 @@ public class Na9ra extends Application {
         scene.setFill(null);
 
         // Apply CSS to the scene to make it transparent with rounded corners and drop shadow effect
-        scene.getStylesheets().add(getClass().getResource("/gui/resources/UI.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/gui/Rresources/UI.css").toExternalForm());
 
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);

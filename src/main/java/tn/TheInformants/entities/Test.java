@@ -1,4 +1,4 @@
-package tn.TheInformants.Entities;
+package tn.TheInformants.entities;
 
 import tn.TheInformants.Enums.Status;
 
