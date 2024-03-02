@@ -4,15 +4,45 @@ public class Panier {
 private int id_panier;
 private int id_liv;
 private double total_price;
+private String nom_liv;
+private String imagePath;
 
-    public Panier(int id_panier, int id_liv, double total_price) {
+    public Panier() {
+
+    }
+
+    public void setNom_liv(String nom_liv) {
+        this.nom_liv = nom_liv;
+    }
+
+    public String getNom_liv() {
+        return nom_liv;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public Panier(int id_panier, int id_liv, double total_price, String nom_liv, String imagePath) {
         this.id_panier = id_panier;
         this.id_liv = id_liv;
         this.total_price = total_price;
+        this.nom_liv = nom_liv;
+        this.imagePath = imagePath;
+
+
     }
-    public Panier(int id_liv, double total_price) {
+    public Panier(int id_liv, double total_price,String nom_liv,String imagePath) {
         this.id_liv = id_liv;
         this.total_price = total_price;
+        this.nom_liv = nom_liv;
+        this.imagePath = imagePath;
+
+
     }
 
     @Override

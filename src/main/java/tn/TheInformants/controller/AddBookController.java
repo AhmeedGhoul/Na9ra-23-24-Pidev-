@@ -131,7 +131,7 @@ private String imagePath1;
                 AnchorPane anchorPane = fxmlLoader.load();
                 itemadminController ItemadminController = fxmlLoader.getController();
                 ItemadminController.setData(itemObservableList.get(i));
-                gridPane.add(anchorPane,col,rows);
+                gridPane.add(anchorPane,col,rows++);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

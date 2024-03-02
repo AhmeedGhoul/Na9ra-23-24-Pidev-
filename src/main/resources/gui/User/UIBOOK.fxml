@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -47,26 +46,34 @@
             <String fx:value="left-form" />
             <String fx:value="shadow" />
          </styleClass>
+         <children>
+            <VBox layoutX="21.0" layoutY="14.0" prefHeight="606.0" prefWidth="424.0">
+               <children>
+                  <ScrollPane prefHeight="605.0" prefWidth="424.0">
+                     <content>
+                        <GridPane fx:id="collectionListView">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+         </children>
       </AnchorPane>
-      <AnchorPane fx:id="mainanchor" layoutX="16.0" layoutY="124.0" prefHeight="635.0" prefWidth="467.0" stylesheets="@../resources/AI.css">
+      <AnchorPane fx:id="mainanchor" layoutX="16.0" layoutY="124.0" prefHeight="635.0" prefWidth="467.0" stylesheets="@../resources/AI.css" visible="false">
          <children>
             <VBox prefHeight="535.0" prefWidth="238.0">
                <children>
-                  <ScrollPane prefHeight="535.0" prefWidth="273.0" styleClass="transparent-scroll-pane" stylesheets="@../resources/AI.css">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <GridPane fx:id="BookListView" prefHeight="127.0" prefWidth="202.0">
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                              </GridPane>
-                           </children>
-                        </AnchorPane>
-                    </content>
+                  <ScrollPane prefHeight="578.0" prefWidth="238.0" styleClass="transparent-scroll-pane" stylesheets="@../resources/AI.css">
+                     <content>
+                        <GridPane fx:id="BookListView" prefHeight="228.0" prefWidth="242.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                        </GridPane>
+                     </content>
                   </ScrollPane>
                </children>
             </VBox>

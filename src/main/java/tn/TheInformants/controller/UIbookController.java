@@ -1,26 +1,37 @@
 package tn.TheInformants.controller;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.control.ListView;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import tn.TheInformants.Entities.Book;
+import tn.TheInformants.Entities.Panier;
 import tn.TheInformants.Services.ServiceBook;
+import tn.TheInformants.Services.ServicePanier;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class UIbookController implements Initializable {
+
+
     @FXML
     public GridPane BookListView;
+    @FXML
+    private GridPane collectionListView;
     private List<Book> BookObservableList;
+    private List<Panier> panierObservableList;
+
 
     @FXML
     private AnchorPane mainanchor;
@@ -43,47 +54,71 @@ public class UIbookController implements Initializable {
     }
     public UIbookController() throws SQLException {
         ServiceBook serviceBook=ServiceBook.getInstance();
+        ServicePanier servicePanier=ServicePanier.getInstance();
+
         try {
             BookObservableList = serviceBook.recuperer();
+            panierObservableList = servicePanier.recuperer();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         BookListView = new GridPane();
+        collectionListView= new GridPane();
+
     }
 
-    @Override
     public void initialize(URL location, ResourceBundle resources) {
         collectionanchor.setVisible(false);
+        mainanchor.setVisible(true);
+        loadBooks();
+        loadCollectionItems();
+    }
 
+    private void loadBooks() {
         int col = 0;
         int rows = 0;
         try {
             for (int i = 0; i < BookObservableList.size(); i++) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/gui/Admin/itembook.fxml"));
-                System.out.println("dkhalnaaa");
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/Admin/itembook.fxml"));
+                System.out.println("Loading itembook.fxml");
                 AnchorPane anchorPane = fxmlLoader.load();
                 itembookController ItemController = fxmlLoader.getController();
                 ItemController.setData(BookObservableList.get(i));
-                BookListView.add(anchorPane,col,rows);
+                BookListView.add(anchorPane, col, rows++);
             }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Error loading itembook.fxml: " + e.getMessage());
+            e.printStackTrace();
         }
+    }
+
+    private void loadCollectionItems() {
+        int col = 0;
+        int rows = 0;
+        try {
+            for (int i = 0; i < panierObservableList.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/User/collectionItem.fxml"));
+                System.out.println("Loading collectionItem.fxml");
+                AnchorPane anchorPane = fxmlLoader.load();
+                // Assuming setData is a method in collectionItemController
+                collectionitemController ItemController = fxmlLoader.getController();
+                ItemController.setData(panierObservableList.get(i));
+                collectionListView.add(anchorPane, col, rows++);
+            }
+        } catch (IOException e) {
+            System.err.println("Error loading collectionItem.fxml: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    void download(MouseEvent event) {
+
 
     }
 
-    public void refresh(ActionEvent actionEvent) {
-    }
-
-    public void onChangeProp(ActionEvent actionEvent) {
-    }
-
-    public void keyTyped(KeyEvent keyEvent) {
-    }
-
-    public void addAnnounce(ActionEvent actionEvent) {
-    }
 
   /*  public void addAnnounce(ActionEvent actionEvent) {
         try {
