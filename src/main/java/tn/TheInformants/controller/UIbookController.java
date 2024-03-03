@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 
 public class UIbookController implements Initializable {
 
-
+private Panier panier;
     @FXML
     public GridPane BookListView;
     @FXML
@@ -96,6 +96,7 @@ public class UIbookController implements Initializable {
     private void loadCollectionItems() {
         int col = 0;
         int rows = 0;
+        System.out.println(panier);
         try {
             for (int i = 0; i < panierObservableList.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/User/collectionItem.fxml"));

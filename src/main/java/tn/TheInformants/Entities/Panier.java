@@ -7,6 +7,7 @@ private double total_price;
 private String nom_liv;
 private String imagePath;
 
+    private byte[] pdfPath;
     public Panier() {
 
     }
@@ -27,20 +28,31 @@ private String imagePath;
         this.imagePath = imagePath;
     }
 
-    public Panier(int id_panier, int id_liv, double total_price, String nom_liv, String imagePath) {
+    public Panier(int id_panier, int id_liv, double total_price, String nom_liv, String imagePath,byte[] pdfPath) {
         this.id_panier = id_panier;
         this.id_liv = id_liv;
         this.total_price = total_price;
         this.nom_liv = nom_liv;
         this.imagePath = imagePath;
-
+        this.pdfPath = pdfPath;
 
     }
-    public Panier(int id_liv, double total_price,String nom_liv,String imagePath) {
+
+    public byte[] getPdfPath() {
+        return pdfPath;
+    }
+
+    public void setPdfPath(byte[] pdfPath) {
+        this.pdfPath = pdfPath;
+    }
+
+    public Panier(int id_liv, double total_price, String nom_liv, String imagePath,byte[] pdfPath) {
         this.id_liv = id_liv;
         this.total_price = total_price;
         this.nom_liv = nom_liv;
         this.imagePath = imagePath;
+        this.pdfPath = pdfPath;
+
 
 
     }
@@ -51,6 +63,9 @@ private String imagePath;
                 "id_panier=" + id_panier +
                 ", id_liv=" + id_liv +
                 ", total_price=" + total_price +
+                ", nom_liv='" + nom_liv + '\'' +
+                ", imagePath='" + imagePath + '\'' +
+                ", pdfPath='" + pdfPath + '\'' +
                 '}';
     }
 

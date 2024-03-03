@@ -51,7 +51,7 @@
                <children>
                   <ScrollPane prefHeight="605.0" prefWidth="424.0">
                      <content>
-                        <GridPane fx:id="collectionListView">
+                        <GridPane fx:id="collectionListView" prefHeight="0.0" prefWidth="419.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                            </columnConstraints>
@@ -62,7 +62,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="mainanchor" layoutX="16.0" layoutY="124.0" prefHeight="635.0" prefWidth="467.0" stylesheets="@../resources/AI.css" visible="false">
+      <AnchorPane fx:id="mainanchor" layoutX="16.0" layoutY="124.0" prefHeight="635.0" prefWidth="467.0" stylesheets="@../resources/AI.css">
          <children>
             <VBox prefHeight="535.0" prefWidth="238.0">
                <children>

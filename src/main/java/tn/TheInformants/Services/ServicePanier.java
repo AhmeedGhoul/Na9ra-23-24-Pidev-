@@ -28,10 +28,10 @@ public class ServicePanier implements Iservices<Panier>{
     }
     @Override
     public void ajouter(Panier panier) throws SQLException {
-        String sql = "INSERT INTO panier (id_panier, id_liv, total_price,nom_liv,imagePath) VALUES " +
+        String sql = "INSERT INTO panier (id_panier, id_liv, total_price,nom_liv,imagePath,pdfPath) VALUES " +
                 "('" + panier.getId_panier() + "','" + panier.getId_liv() + "','" +
                 panier.getTotal_price()+ "','" +panier.getNom_liv() +"','" +
-                panier.getImagePath()+ "')";
+                panier.getImagePath()+ "','" +panier.getPdfPath()+ "')";
 
 
         // Utilisation de PreparedStatement pour éviter les problèmes de sécurité avec les requêtes SQL
@@ -64,6 +64,8 @@ public class ServicePanier implements Iservices<Panier>{
                 panier.setId_liv(rs.getInt("id_liv"));
                 panier.setNom_liv(rs.getString("Nom_liv"));
                 panier.setImagePath(rs.getString("ImagePath"));
+                panier.setPdfPath(rs.getBytes("pdfPath"));
+
                 paniersList.add(panier);
             }
         }

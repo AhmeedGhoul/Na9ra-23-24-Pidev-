@@ -15,18 +15,22 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tn.TheInformants.Entities.Book;
+import tn.TheInformants.Entities.Panier;
 import tn.TheInformants.Services.ServiceBook;
 import tn.TheInformants.Services.ServicePanier;
 import tn.TheInformants.Utils.*;
@@ -34,6 +38,13 @@ import java.sql.Connection;
 
 public class AddBookController implements Initializable {
 
+    @FXML
+    private TextField searchpanel;
+    @FXML
+    private Label importpdf;
+
+    @FXML
+    private TextField pdfpathstring;
 
     @FXML
     AnchorPane addanchor;
@@ -45,6 +56,7 @@ public class AddBookController implements Initializable {
     @FXML
     private Label AvaibilityLabel;
 private String imagePath1;
+    private byte[] pdfPath1;
     @FXML
     private Label CategorieLabel;
 
@@ -184,7 +196,7 @@ private String imagePath1;
                             book.setDisponibilite(selectedAvailability);
 
                             try {
-                               Book book2 =new Book(TitleL.getText(),selectedAvailability,selectedCategory,Double.parseDouble(PriceL.getText()),path);
+                               Book book2 =new Book(TitleL.getText(),selectedAvailability,selectedCategory,Double.parseDouble(PriceL.getText()),path,book.getPdfPath());
                                 serviceBook.ajouter(book2);
                                 showAlert("Success", "Book Added");
 
@@ -286,6 +298,7 @@ private String imagePath1;
         }
     }
 
+
     public void updatebtnanchor(ActionEvent actionEvent) {
 
         ServiceBook serviceBook1 = new ServiceBook();
@@ -330,7 +343,62 @@ private String imagePath1;
 
     }
 
+    private Book book;
 
+    @FXML
+    public void importPDF(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("PDF Files", "*.pdf")
+        );
+        File selectedFile = fileChooser.showOpenDialog(null);
+
+        if (selectedFile != null) {
+            try {
+                byte[] pdfContent = Files.readAllBytes(selectedFile.toPath());
+
+
+                Book book = new Book();
+                book.setPdfPath(pdfContent);
+                // You can store or use pdfContent as needed
+                System.out.println("PDF Content Length: " + pdfContent.length);
+
+                showAlert("Success", "PDF File Imported");
+                // If you need to use the 'book' object further, you can do so here.
+                // You may want to store it as a property in your controller.
+
+            } catch (IOException e) {
+                showAlert("Error", "Failed to read PDF file: " + e.getMessage());
+            }
+        }
+    }
+
+
+    public void searchbook_clicked(KeyEvent keyEvent) {
+        // 1. Retrieve the text from the searchpanel TextField
+        String searchText = searchpanel.getText().toLowerCase().trim();
+
+        // 2. Clear the existing content in the gridPane
+        gridPane.getChildren().clear();
+
+        // 3. Iterate through the list of books to find matches
+        int col = 0;
+        int rows = 0;
+        for (Book book : itemObservableList) {
+            if (book.getNom_liv().toLowerCase().contains(searchText)) {
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/gui/Admin/itemadminbook.fxml"));
+                    AnchorPane anchorPane = fxmlLoader.load();
+                    itemadminController itemAdminController = fxmlLoader.getController();
+                    itemAdminController.setData(book);
+                    gridPane.add(anchorPane, col, rows++);
+                } catch (IOException e) {
+                    System.out.println("Error loading FXML: " + e.getMessage());
+                }
+            }
+        }
+    }
 }
 
 

@@ -22,30 +22,43 @@ public class Book {
     private Disponibilite disponibilite;
     private Categorie categorie;
     private double prix_liv;
+
     private String ImagePath;
+    private byte[] pdfPath;
+
 
 
 
     // Constructeur
-    public Book(int id_liv, String nom_liv, Disponibilite disponibilite, Categorie categorie, double prix_liv,String ImagePath) {
+    public Book(int id_liv, String nom_liv, Disponibilite disponibilite, Categorie categorie, double prix_liv,String ImagePath,byte[] pdfPath) {
         this.id_liv = id_liv;
         this.nom_liv = nom_liv;
         this.disponibilite = disponibilite;
         this.categorie = categorie;
         this.prix_liv = prix_liv;
         this.ImagePath = ImagePath;
+        this.pdfPath = pdfPath;
+
 
     }
-    public Book( String nom_liv, Disponibilite disponibilite, Categorie categorie, double prix_liv,String ImagePath) {
+    public Book( String nom_liv, Disponibilite disponibilite, Categorie categorie, double prix_liv,String ImagePath,byte[] pdfPath) {
 
         this.nom_liv = nom_liv;
         this.disponibilite = disponibilite;
         this.categorie = categorie;
         this.prix_liv = prix_liv;
         this.ImagePath = ImagePath;
+        this.pdfPath = pdfPath;
 
     }
 
+    public byte[] getPdfPath() {
+        return pdfPath;
+    }
+
+    public void setPdfPath(byte[] pdfPath) {
+        this.pdfPath = pdfPath;
+    }
     // Méthodes getters et setters
 
     public int getId_liv() {

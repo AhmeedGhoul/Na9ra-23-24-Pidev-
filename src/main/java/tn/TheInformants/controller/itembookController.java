@@ -50,11 +50,10 @@ public void  buybtn_clicked(ActionEvent event) throws SQLException {
     double prix_liv=book.getPrix_liv();
     String nom_liv=book.getNom_liv();
     String image_liv=book.getImagePath();
+    byte[] pdf_liv=book.getPdfPath();
 
 
-
-
-    Panier panier = new Panier(id_liv,prix_liv,nom_liv,image_liv);
+    Panier panier = new Panier(id_liv,prix_liv,nom_liv,image_liv,pdf_liv);
     try {
         servicePanier.ajouter(panier);
         showPopup("Book added to collection successfully", Alert.AlertType.INFORMATION);

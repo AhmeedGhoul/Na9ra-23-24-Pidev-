@@ -27,9 +27,9 @@ public class ServiceBook implements Iservices<Book> {
     @Override
 
     public void ajouter(Book book) throws SQLException {
-        String sql = "INSERT INTO Books (id_liv, nom_liv, disponibilite_liv, categorie_liv, prix_liv, ImagePath) VALUES " +
+        String sql = "INSERT INTO Books (id_liv, nom_liv, disponibilite_liv, categorie_liv, prix_liv, ImagePath, pdfPath) VALUES " +
                 "('" + book.getId_liv() + "','" + book.getNom_liv() + "','" +
-                book.getDisponibilite() + "','" + book.getCategorie() + "','" + book.getPrix_liv() + "','" + book.getImagePath() + "')";
+                book.getDisponibilite() + "','" + book.getCategorie() + "','" + book.getPrix_liv() + "','" + book.getImagePath() + "','" + book.getPdfPath() + "')";
 
 
         // Utilisation de PreparedStatement pour éviter les problèmes de sécurité avec les requêtes SQL
@@ -41,7 +41,7 @@ public class ServiceBook implements Iservices<Book> {
 
     @Override
     public void modifier(Book book) throws SQLException {
-        String sql = "UPDATE Books SET id_liv = ?, Nom_liv = ?, Disponibilite_liv = ?, Categorie_liv = ?, Prix_liv = ?, ImagePath = ? WHERE id_liv = ? ";
+        String sql = "UPDATE Books SET id_liv = ?, Nom_liv = ?, Disponibilite_liv = ?, Categorie_liv = ?, Prix_liv = ?, ImagePath = ?, pdfPath = ? WHERE id_liv = ? ";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, book.getId_liv());
@@ -51,6 +51,8 @@ public class ServiceBook implements Iservices<Book> {
             preparedStatement.setDouble(5, book.getPrix_liv());
             preparedStatement.setInt(6, book.getId_liv());  // Set the value for the WHERE clause
             preparedStatement.setString(7, book.getImagePath());
+            preparedStatement.setBytes(8, book.getPdfPath());
+
             preparedStatement.executeUpdate();
         }
     }
@@ -105,6 +107,8 @@ public class ServiceBook implements Iservices<Book> {
                 book.setCategorie(Book.Categorie.valueOf(rs.getString("Categorie_liv")));
                 book.setPrix_liv(rs.getDouble("Prix_liv"));
                 book.setImagePath(rs.getString("ImagePath"));
+                book.setPdfPath(rs.getBytes("pdfPath"));
+
                 booksList.add(book);
             }
         }
