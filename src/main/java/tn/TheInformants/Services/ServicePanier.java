@@ -62,6 +62,8 @@ public class ServicePanier implements Iservices<Panier>{
                 Panier panier = new Panier();
                 panier.setId_panier(rs.getInt("id_panier"));
                 panier.setId_liv(rs.getInt("id_liv"));
+                panier.setTotal_price(rs.getDouble("total_price"));
+
                 panier.setNom_liv(rs.getString("Nom_liv"));
                 panier.setImagePath(rs.getString("ImagePath"));
                 panier.setPdfPath(rs.getBytes("pdfPath"));

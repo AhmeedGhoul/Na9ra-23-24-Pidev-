@@ -76,7 +76,7 @@ private Panier panier;
     }
 
     private void loadBooks() {
-        int col = 0;
+        int col = 1;
         int rows = 0;
         try {
             for (int i = 0; i < BookObservableList.size(); i++) {
@@ -85,13 +85,23 @@ private Panier panier;
                 AnchorPane anchorPane = fxmlLoader.load();
                 itembookController ItemController = fxmlLoader.getController();
                 ItemController.setData(BookObservableList.get(i));
-                BookListView.add(anchorPane, col, rows++);
+                BookListView.add(anchorPane, col, rows);
+
+                // Increment col for the next iteration
+                col++;
+
+                // Check if col reaches 2 (number of desired columns)
+                if (col == 2) {
+                    col = 0;  // Reset col to 0 for the next row
+                    rows++;   // Move to the next row
+                }
             }
         } catch (IOException e) {
             System.err.println("Error loading itembook.fxml: " + e.getMessage());
             e.printStackTrace();
         }
     }
+
 
     private void loadCollectionItems() {
         int col = 0;

@@ -198,7 +198,8 @@ private String imagePath1;
                             try {
                                Book book2 =new Book(TitleL.getText(),selectedAvailability,selectedCategory,Double.parseDouble(PriceL.getText()),path,book.getPdfPath());
                                 serviceBook.ajouter(book2);
-                                showAlert("Success", "Book Added");
+                                refreshGridPane();
+                                showconf("Success", "Book Added");
 
                                 // Refresh the list of books after successful addition
 
@@ -235,6 +236,12 @@ private String imagePath1;
             alert.setContentText(content);
             alert.showAndWait();
         }
+    private void showconf(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
 
 
 
@@ -342,7 +349,27 @@ private String imagePath1;
 
 
     }
+    public void refreshGridPane() {
+        System.out.println("njarreb w barra");
 
+        gridPane.getChildren().clear(); // Clear existing children
+        System.out.println("njarreb w barra");
+        int col = 0;
+        int rows = 0;
+        try {
+            for (int i = 0; i < itemObservableList.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/gui/Admin/itemadminbook.fxml"));
+                System.out.println("dkhalnaaa");
+                AnchorPane anchorPane = fxmlLoader.load();
+                itemadminController ItemadminController = fxmlLoader.getController();
+                ItemadminController.setData(itemObservableList.get(i));
+                gridPane.add(anchorPane, col, rows++);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
     private Book book;
 
     @FXML
@@ -385,7 +412,7 @@ private String imagePath1;
         int col = 0;
         int rows = 0;
         for (Book book : itemObservableList) {
-            if (book.getNom_liv().toLowerCase().contains(searchText)) {
+            if (book.getNom_liv().toLowerCase().contains(searchText))  {
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/gui/Admin/itemadminbook.fxml"));

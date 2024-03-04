@@ -28,6 +28,7 @@ public class itemadminController  {
 
     @FXML
     private AnchorPane anchorPane;
+
     @FXML
     private ImageView imgitem;
     @FXML
@@ -59,11 +60,14 @@ private Book book;
                     // Call the service method to delete the product from the database
                     ServiceBook serviceProduit = new ServiceBook();
                     serviceProduit.supprimer(book);
+                    FXMLLoader fxmlLoader = new FXMLLoader();
 
                     // Notify the user that the deletion was successful
                     Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                     successAlert.setTitle("Deletion Successful");
                     successAlert.setHeaderText(null);
+                    AddBookController ItemadminController = fxmlLoader.getController();
+                    ItemadminController.refreshGridPane();
                     successAlert.setContentText("Product deleted successfully.");
                     successAlert.showAndWait();
 

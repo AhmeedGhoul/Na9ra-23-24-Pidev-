@@ -1,17 +1,21 @@
 package tn.TheInformants.controller;
 import java.awt.Desktop;
-import javafx.embed.swing.JFXPanel;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import tn.TheInformants.Entities.Panier;
+import tn.TheInformants.Entities.Payment;
 
 import javax.swing.*;
 import java.io.File;
@@ -34,29 +38,37 @@ public class collectionitemController {
         imageliv.setImage(image);
     }
     public void download(MouseEvent mouseEvent) {
-        if (panier != null && panier.getPdfPath() != null ) {
-            byte[] pdfPath = panier.getPdfPath();
-            downloadPDF(panier.getPdfPath(),panier.getNom_liv());
-        } else {
-            // Handle the case where no PDF path is available
-            System.out.println("No PDF available for download.");
-        }
-    }
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/gui/User/payment.fxml"));
 
+            // Load the payment.fxml file and get the root node
+            Parent anchorPane = fxmlLoader.load();
 
-    public void downloadPDF(byte[] pdf,String fileName) {
-        // Specify the directory where you want to save the PDF
-        String directory = "C:\\Users\\rannn\\Downloads";
+            // Access the controller after loading the fxml
+            PaymentController paymentController = fxmlLoader.getController();
+            System.out.println(panier);
+            // Set the panier in the PaymentController
+            paymentController.setPanier(panier);
 
-        // Construct the full file path
-        String filePath = directory + "\\" + fileName+".pdf";
+            // Create a new scene
+            Scene updateScene = new Scene(anchorPane);
 
-        try (FileOutputStream fos = new FileOutputStream(filePath)) {
-            fos.write(pdf);
-            System.out.println("PDF downloaded successfully to: " + filePath);
+            // Get the stage from the ActionEvent
+            Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+
+            // Create a new stage for the payment.fxml scene
+            Stage paymentStage = new Stage();
+            paymentStage.setTitle("Pay");
+            paymentStage.setScene(updateScene);
+
+            // Set the owner stage to the current stage (collectionitem.fxml)
+            paymentStage.initOwner(currentStage);
+
+            // Show the payment.fxml scene without closing the collectionitem.fxml scene
+            paymentStage.show();
         } catch (IOException e) {
-            System.err.println("Error downloading PDF: " + e.getMessage());
-            e.printStackTrace();
+            e.printStackTrace(); // Handle the exception according to your needs
         }
     }
 
