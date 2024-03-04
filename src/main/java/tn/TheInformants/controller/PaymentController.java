@@ -17,11 +17,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PaymentController {
-Panier panier;
-     private Payment payment;
-    @FXML
-    private TextField amountField;
+public class PaymentController{
+    Panier panier;
+    private Payment payment;
+
 
     @FXML
     private TextField cardNumberField;
@@ -32,6 +31,8 @@ Panier panier;
     @FXML
     private TextField cvvField;
 
+    @FXML
+    private Label totalPriceLabel;
     // Add this setter method
     public void setPanier(Panier panier) {
         this.panier = panier;
@@ -44,13 +45,15 @@ Panier panier;
 
         try {
             // Get amount from the text field
-                Long amount = Long.parseLong(amountField.getText()) * 100;
+            double amount = panier.getTotal_price() * 100;
+            long amountliv = (long) amount;
+
             System.out.println("hedhi l panier"+panier);
 
-                // Create a PaymentIntent
+            // Create a PaymentIntent
             PaymentIntentCreateParams createParams = PaymentIntentCreateParams.builder()
                     .setCurrency("usd")
-                    .setAmount(amount)
+                    .setAmount(amountliv)
                     .build();
 
             PaymentIntent intent = PaymentIntent.create(createParams);

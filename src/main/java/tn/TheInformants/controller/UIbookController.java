@@ -1,10 +1,12 @@
 package tn.TheInformants.controller;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,6 +23,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class UIbookController implements Initializable {
 
@@ -29,10 +32,14 @@ private Panier panier;
     public GridPane BookListView;
     @FXML
     private GridPane collectionListView;
+    @FXML
+    private ImageView bookicon;
     private List<Book> BookObservableList;
     private List<Panier> panierObservableList;
 
 
+    @FXML
+    private ComboBox<String> categoryComboBox;
     @FXML
     private AnchorPane mainanchor;
 
@@ -46,11 +53,14 @@ private Panier panier;
         // Hide the mainanchor and show the collectionanchor
         mainanchor.setVisible(false);
         collectionanchor.setVisible(true);
+        bookicon.setVisible(true);
+
     }
     @FXML
     void booksnavclicked(ActionEvent event) {
         mainanchor.setVisible(true);
         collectionanchor.setVisible(false);
+        bookicon.setVisible(false);
     }
     public UIbookController() throws SQLException {
         ServiceBook serviceBook=ServiceBook.getInstance();
@@ -71,8 +81,11 @@ private Panier panier;
     public void initialize(URL location, ResourceBundle resources) {
         collectionanchor.setVisible(false);
         mainanchor.setVisible(true);
+        bookicon.setVisible(false);
         loadBooks();
         loadCollectionItems();
+        ObservableList<String> listData = FXCollections.observableArrayList("FICTION", "NON_FICTION", "SCIENCE_FICTION","MYSTERE","AUTRE");
+        categoryComboBox.setItems(listData);
     }
 
     private void loadBooks() {
@@ -91,8 +104,8 @@ private Panier panier;
                 col++;
 
                 // Check if col reaches 2 (number of desired columns)
-                if (col == 2) {
-                    col = 0;  // Reset col to 0 for the next row
+                if (col == 4) {
+                    col = 1;  // Reset col to 0 for the next row
                     rows++;   // Move to the next row
                 }
             }
@@ -124,23 +137,62 @@ private Panier panier;
     }
 
 
+
+
+
+    // ... Existing code ...
+
     @FXML
-    void download(MouseEvent event) {
+    void filterByCategory(ActionEvent event) {
+        Book.Categorie selectedCategory = Book.Categorie.valueOf(categoryComboBox.getValue());
+        if (selectedCategory != null) {
+            // Filter the books based on the selected category
+            List<Book> filteredBooks = filterBooksByCategory(selectedCategory);
 
+            // Clear the existing BookListView
+            BookListView.getChildren().clear();
 
+            // Reload the filtered books
+            int col = 1;
+            int rows = 0;
+            try {
+                for (int i = 0; i < filteredBooks.size(); i++) {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/Admin/itembook.fxml"));
+                    System.out.println("Loading itembook.fxml");
+                    AnchorPane anchorPane = fxmlLoader.load();
+                    itembookController ItemController = fxmlLoader.getController();
+                    ItemController.setData(filteredBooks.get(i));
+                    BookListView.add(anchorPane, col, rows);
+
+                    // Increment col for the next iteration
+                    col++;
+
+                    // Check if col reaches 2 (number of desired columns)
+                    if (col == 4) {
+                        col = 1;  // Reset col to 0 for the next row
+                        rows++;   // Move to the next row
+                    }
+                }
+            } catch (IOException e) {
+                System.err.println("Error loading itembook.fxml: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private List<Book> filterBooksByCategory(Book.Categorie category) {
+        // Implement your logic to filter books based on the selected category
+        // For example, you can iterate through BookObservableList and return books with matching category
+        return BookObservableList.stream()
+                .filter(book -> category.equals(book.getCategorie()))
+                .collect(Collectors.toList());
     }
 
 
-  /*  public void addAnnounce(ActionEvent actionEvent) {
-        try {
-            Parent parent = FXMLLoader.load(getClass().getResource("/Views/Windows/AddAnnounceWindow.fxml"));
-            Scene scene = new Scene(parent);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
+
+
+
+
+
+
 }
