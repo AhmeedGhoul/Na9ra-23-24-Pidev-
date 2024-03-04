@@ -24,6 +24,32 @@ public class ServiceBook implements Iservices<Book> {
             instance=new ServiceBook();
         return instance;
     }
+    public double getTotalIncome() throws SQLException {
+
+        double totalIncome = 0;
+
+        try (Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery("SELECT SUM(Prix_liv) AS totalIncome FROM books");
+
+            if (resultSet.next()) {
+                totalIncome = resultSet.getDouble("totalIncome");
+            }
+        }
+
+        return totalIncome;
+    }
+    public int getTotalBooksCount() throws SQLException {
+        String query = "SELECT COUNT(*) FROM books";
+        try (Connection connection = MyDataBase.getInstance().getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+        }
+        return 0;
+    }
     @Override
 
     public void ajouter(Book book) throws SQLException {

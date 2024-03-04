@@ -57,6 +57,7 @@ public void  buybtn_clicked(ActionEvent event) throws SQLException {
     try {
         servicePanier.ajouter(panier);
         showPopup("Book added to collection successfully", Alert.AlertType.INFORMATION);
+
     } catch (SQLException e) {
         throw new RuntimeException(e);
     }

@@ -128,6 +128,7 @@ private String imagePath1;
 
     }
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -349,27 +350,32 @@ private String imagePath1;
 
 
     }
-    public void refreshGridPane() {
-        System.out.println("njarreb w barra");
+    void refreshGridPane() throws SQLException {
+        // Assuming your grid pane is named BookListView
+        gridPane.getChildren().clear(); // Clear existing items
 
-        gridPane.getChildren().clear(); // Clear existing children
-        System.out.println("njarreb w barra");
+        // Reload the books and populate the grid pane
+        List<Book> allBooks = serviceBook.recuperer(); // Replace this with your actual method to get all books
         int col = 0;
         int rows = 0;
+
         try {
-            for (int i = 0; i < itemObservableList.size(); i++) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/gui/Admin/itemadminbook.fxml"));
-                System.out.println("dkhalnaaa");
+            for (int i = 0; i < allBooks.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/Admin/itemadminbook.fxml"));
+                System.out.println("Loading itembook.fxml");
                 AnchorPane anchorPane = fxmlLoader.load();
-                itemadminController ItemadminController = fxmlLoader.getController();
-                ItemadminController.setData(itemObservableList.get(i));
+                itemadminController ItemController = fxmlLoader.getController();
+                ItemController.setData(allBooks.get(i));
                 gridPane.add(anchorPane, col, rows++);
+
+
             }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Error loading itembook.fxml: " + e.getMessage());
+            e.printStackTrace();
         }
     }
+
     private Book book;
 
     @FXML

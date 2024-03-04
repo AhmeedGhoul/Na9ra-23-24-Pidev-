@@ -190,7 +190,31 @@ private Panier panier;
 
 
 
+   void refreshGridPane() throws SQLException {
+        // Assuming your grid pane is named BookListView
+        collectionListView.getChildren().clear(); // Clear existing items
+        ServicePanier servicePanier=new ServicePanier();
+        // Reload the books and populate the grid pane
+        List<Panier> allBooks = servicePanier.recuperer(); // Replace this with your actual method to get all books
+        int col = 0;
+        int rows = 0;
 
+        try {
+            for (int i = 0; i < allBooks.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/User/collectionItem.fxml"));
+                System.out.println("Loading itembook.fxml");
+                AnchorPane anchorPane = fxmlLoader.load();
+                collectionitemController ItemController = fxmlLoader.getController();
+                ItemController.setData(allBooks.get(i));
+                collectionListView.add(anchorPane, col, rows++);
+
+
+            }
+        } catch (IOException e) {
+            System.err.println("Error loading itembook.fxml: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
 
 

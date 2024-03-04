@@ -1,6 +1,7 @@
 package tn.TheInformants.controller;import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,15 +10,20 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tn.TheInformants.Entities.Book;
 import tn.TheInformants.Utils.MyDataBase;
-
+import tn.TheInformants.Services.ServiceBook;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class BookController {
+public class BookController implements Initializable {
     @FXML
     private Label HomeTotalBooks;
+    @FXML
+    private Label totalIncomeLabel;
     @FXML
     private Button AdddBookDashboard;
 
@@ -33,6 +39,38 @@ public class BookController {
     @FXML
     private Label totalUsers;
     Book book;
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // Your existing initialization code...
+
+        // Call the method to update the total books count
+        updateTotalBooksCount();
+    }
+    private ServiceBook serviceBook = new ServiceBook();
+    // Add this method to your controller
+    private void updateTotalBooksCount() {
+        try {
+            // Call the service method to get the count of books from the database
+            int totalBooksCount = serviceBook.getTotalBooksCount();
+
+            // Set the count to the HomeTotalBooks label
+            HomeTotalBooks.setText("" + totalBooksCount);
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle the exception according to your needs
+        }
+    }
+
+
+    private void updateTotalIncome() {
+        try {
+            double totalIncome = serviceBook.getTotalIncome();
+            totalIncomeLabel.setText("Total Income: " + totalIncome + " TND");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception according to your needs
+        }
+    }
+
 
     @FXML
     void AddAdminDashboardBtn(ActionEvent event) {
@@ -50,32 +88,16 @@ public class BookController {
 
     }
 
+
+
+
+
     @FXML
     void BookAdminDashboardBtn(ActionEvent event) {
 
 
     }
-    public void setHomeTotalBooks() {
-        System.out.println("Méthode homeTotalCourses() appelée.");
 
-        String sql = "SELECT COUNT(id_liv) AS book_count FROM books";
-        Connection connect = MyDataBase.getInstance().getConnection();
-        int countData = 0;
-        try {
-            PreparedStatement prepare = connect.prepareStatement(sql);
-            ResultSet result = prepare.executeQuery();
-            if (result.next()) {
-                countData = result.getInt("book_count");
-                // Supposons que homeTotalCourses représente le label où vous souhaitez afficher le nombre total de books
-                HomeTotalBooks.setText(String.valueOf(countData));
-            } else {
-                System.out.println("Aucun résultat trouvé pour le nombre total de books.");
-            }
-            result.close();
-            prepare.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+
 
 }
