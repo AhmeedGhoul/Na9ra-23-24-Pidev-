@@ -26,13 +26,13 @@ public class MailController {
     private Label error;
     @FXML
     private Button RETOUR;
-        user user3=new user();
+    user user3=new user();
     @FXML
     private PasswordField fx_mod;
     @FXML
     private PasswordField fx_remod;
 
-    private String code_random() {
+    public static String code_random() {
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 + "0123456789"
                 + "abcdefghijklmnopqrstuvxyz";
@@ -51,13 +51,13 @@ public class MailController {
         return sb.toString();
 
     }
-    public void alert_Box(String title, String message) {
+    public  static void alert_Box(String title, String message) {
         Alert dg = new Alert(Alert.AlertType.WARNING);
         dg.setTitle(title);
         dg.setContentText(message);
         dg.show();
     }
-    public boolean alert_Box_verif_code(String title, String message) throws InterruptedException {
+    public static boolean alert_Box_verif_code(String title, String message) throws InterruptedException {
 
         boolean sortie = false;
         Alert.AlertType Type = Alert.AlertType.WARNING;
@@ -75,14 +75,14 @@ public class MailController {
         return sortie;
 
     }
-    private String affichage_box_code(String code_random) throws InterruptedException {
+    public static String affichage_box_code(String code_random) throws InterruptedException {
         int i = 0;
         boolean test = false;
 
         while (i <= 2 && !test) {
             TextInputDialog dialog = new TextInputDialog();
             dialog.setTitle("Code Verification");
-            dialog.setContentText("Un code de verification est envoyé a votre mail");
+            dialog.setContentText("A verification code is sent to your email");
             String code_saisie;
 
             Optional<String> result = dialog.showAndWait();
@@ -97,12 +97,12 @@ public class MailController {
                 } else if (!code_saisie.equals(code_random) && i < 2) {
                     if (i == 0) {
                         test = true;
-                        test = alert_Box_verif_code("Code Incorrect", "Il vous reste deux tentatives");
+                        test = alert_Box_verif_code("Incorrect code", "You have two attempts left");
 
                     } else if (i == 1) {
                         test = true;
 
-                        test = alert_Box_verif_code("Code Incorrect", "Il vous reste une seule  tentative");
+                        test = alert_Box_verif_code("Incorrect code", "You only have one attempt left");
                     }
 
                     i++;
@@ -120,7 +120,7 @@ public class MailController {
 
     }
 
-    public void information_Box(String title, String message) {
+    public static void information_Box(String title, String message) {
         Alert dg = new Alert(Alert.AlertType.INFORMATION);
         dg.setTitle(title);
         dg.setContentText(message);
@@ -128,7 +128,7 @@ public class MailController {
     }
 
     @FXML
-   void send_code(ActionEvent event) throws InterruptedException, IOException {
+    void  send_code(ActionEvent event) throws InterruptedException, IOException {
         serviceuser su = new serviceuser();
         SendMail sm = new SendMail();
         String code_random = "";
@@ -153,23 +153,23 @@ public class MailController {
                     this.verification = true;
                     String modepasse=fx_mod.getText();
                     String remod=fx_remod.getText();
-                                    if (Objects.equals(modepasse, remod)){
-                                        remod=passwordencryptor.encrypt(modepasse);
-                                        user3.setPswd(remod);
-                                         su.Modiferuser(user3,user3.getUser_id());
-                    try {
-                        Parent root = FXMLLoader.load(getClass().getResource("/gui/sharedInterface/login.fxml"));
-                        Scene scene = new Scene(root, 1366, 768);
-                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        stage.setScene(scene);
-                        stage.show();
-                    } catch (IOException e) {
-                                            e.printStackTrace();
-                                            // Gérer l'erreur si le chargement de la page échoue
-                                        }
-                                     }else {
-                        error.setText("password error");
+                    if (Objects.equals(modepasse, remod)){
+                        remod=passwordencryptor.encrypt(modepasse);
+                        user3.setPswd(remod);
+                        su.Modiferuser(user3,user3.getUser_id());
+                        try {
+                            Parent root = FXMLLoader.load(getClass().getResource("/gui/sharedInterface/login.fxml"));
+                            Scene scene = new Scene(root, 1366, 768);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene);
+                            stage.show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            // Gérer l'erreur si le chargement de la page échoue
                         }
+                    }else {
+                        error.setText("password error");
+                    }
 
 
                 } else if (!"close".equals(resultat)) {

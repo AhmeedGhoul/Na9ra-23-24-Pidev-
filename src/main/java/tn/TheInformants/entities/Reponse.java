@@ -1,20 +1,28 @@
 package tn.TheInformants.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Reponse {
     private int id_Reponse;
-    private String reponse;
-    private int question_id;
-    public Reponse(){}
 
-    public Reponse(String reponse, int question_id) {
-        this.reponse = reponse;
-        this.question_id = question_id;
+    private Boolean isCorrect;
+    private String reponse;
+    public Reponse(){
+
     }
 
-    public Reponse(int id_Reponse, String reponse, int question_id) {
+    public Reponse(String reponse,Boolean iscorrect) {
+        this.reponse = reponse;
+        this.isCorrect=iscorrect;
+
+    }
+
+    public Reponse(int id_Reponse, String reponse,Boolean iscorrect) {
         this.id_Reponse = id_Reponse;
         this.reponse = reponse;
-        this.question_id = question_id;
+        this.isCorrect=iscorrect;
+
     }
 
     public int getId_Reponse() {
@@ -25,9 +33,7 @@ public class Reponse {
         return reponse;
     }
 
-    public int getQuestion_id() {
-        return question_id;
-    }
+
 
     public void setId_Reponse(int id_Reponse) {
         this.id_Reponse = id_Reponse;
@@ -37,8 +43,12 @@ public class Reponse {
         this.reponse = reponse;
     }
 
-    public void setQuestion_id(int question_id) {
-        this.question_id = question_id;
+    public Boolean getCorrect() {
+        return isCorrect;
+    }
+
+    public void setCorrect(Boolean correct) {
+        isCorrect = correct;
     }
 
     @Override
@@ -46,7 +56,10 @@ public class Reponse {
         return "Reponse{" +
                 "id_Reponse=" + id_Reponse +
                 ", reponse='" + reponse + '\'' +
-                ", question_id=" + question_id +
+                ",is_correct=" + isCorrect + '\'' +
+
                 '}';
     }
+
+
 }

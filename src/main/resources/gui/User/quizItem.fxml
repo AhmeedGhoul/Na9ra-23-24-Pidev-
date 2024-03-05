@@ -32,16 +32,16 @@
             </Text>
             <Label fx:id="categ" layoutX="16.0" layoutY="81.0" styleClass="content" text="Categorie">
                <font>
-                  <Font size="10.0" />
+                  <Font size="8.0" />
                </font>
             </Label>
-            <Label fx:id="quest" layoutX="64.0" layoutY="81.0" styleClass="content" text="15">
+            <Label fx:id="quest" layoutX="90.0" layoutY="81.0" styleClass="content" text="15">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
             <Label fx:id="id" text="0" visible="false" />
-            <Label layoutX="81.0" layoutY="80.0" prefHeight="17.0" prefWidth="59.0" styleClass="content" text="Questions">
+            <Label layoutX="107.0" layoutY="80.0" prefHeight="17.0" prefWidth="59.0" styleClass="content" text="Questions">
                <font>
                   <Font size="10.0" />
                </font>

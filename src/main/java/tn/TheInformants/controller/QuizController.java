@@ -420,7 +420,7 @@ clearFields();
         fileChooser.setTitle("Choisir une image");
 
         // Set the initial directory
-        fileChooser.setInitialDirectory(new File("C:/Users/ASUS/Desktop/Pidev/Na9ra/src/main/resources/gui/resources"));
+        fileChooser.setInitialDirectory(new File("src/main/resources/gui/Rresources"));
 
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("*", "*"));
@@ -443,7 +443,7 @@ imageviewi.setVisible(false);
     private void handlePictureBtnmod() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choisir une image");
-        fileChooser.setInitialDirectory(new File("C:/Users/ASUS/Desktop/Pidev/Na9ra/src/main/resources/gui/resources"));
+        fileChooser.setInitialDirectory(new File("src/main/resources/gui/Rresources"));
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("*", "*"));
         File selectedFile = fileChooser.showOpenDialog(null);
@@ -989,7 +989,7 @@ else
                         .collect(Collectors.toList());
             } else {
                 filteredQuizzes = filteredQuizzes.stream()
-                        .filter(quiz -> quiz.getNb_quest() > 10 && quiz.getNb_quest() < 15)
+                        .filter(quiz -> quiz.getNb_quest() >= 10 && quiz.getNb_quest() <= 15)
                         .collect(Collectors.toList());
             }
 

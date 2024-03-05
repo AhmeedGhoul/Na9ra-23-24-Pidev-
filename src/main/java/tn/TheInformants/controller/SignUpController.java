@@ -18,6 +18,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import tn.TheInformants.entities.user;
 import tn.TheInformants.Enums.Role;
+import tn.TheInformants.services.SendMail;
 import tn.TheInformants.services.serviceuser;
 
 
@@ -27,6 +28,7 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.EventObject;
 
 public class SignUpController {
 
@@ -68,6 +70,10 @@ public class SignUpController {
     private String path;
     @FXML
     private PasswordField tf_pass;
+    boolean verification = false;
+    @FXML
+    private Label error;
+    int verfi=-1;
 
     @FXML
     void initialize() {
@@ -109,7 +115,7 @@ public class SignUpController {
             }
         });
         image_user.setImage(new Image("file:C:\\Users\\user\\Desktop\\drag-drop.gif"));
-;
+        ;
 
     }
 
@@ -137,49 +143,49 @@ public class SignUpController {
     }
 
     @FXML
-    void sign_up(MouseEvent event) throws SQLException, IOException {
+    void sign_up(MouseEvent event) throws SQLException, IOException, InterruptedException {
         LocalDate selectedDate = tf_datenes.getValue();
         LocalDate currentDate = LocalDate.now();
 
         String email = tf_mail.getText();
 
 
-            if (serviceuser.isValidEmail(email)) {
+        if (serviceuser.isValidEmail(email)) {
 
 
-                if (!serviceuser.checkemail(tf_mail.getText())) {
+            if (!serviceuser.checkemail(tf_mail.getText())) {
 
-                    if(serviceuser.isValidPassword(tf_pass.getText())) {
-                        if (!selectedDate.isAfter(currentDate)) {
+                if(serviceuser.isValidPassword(tf_pass.getText())) {
+                    if (!selectedDate.isAfter(currentDate)) {
 
 
-                            user user1 = new user(tf_nom.getText(), tf_prenom.getText(), tf_datenes.getValue(), tf_mail.getText(), tn.TheInformants.Utils.passwordencryptor.encrypt(tf_pass.getText()), null, url_image,0);
+                        user user1 = new user(tf_nom.getText(), tf_prenom.getText(), tf_datenes.getValue(), tf_mail.getText(), tn.TheInformants.Utils.passwordencryptor.encrypt(tf_pass.getText()), null, url_image,0);
 
-                            if (cb_role.getValue() == "PROF")
-                                user1.setRole(Role.PROF);
-                            else if (cb_role.getValue() == "ETUDIANT")
-                                user1.setRole(Role.ETUDIANT);
+                        if (cb_role.getValue() == "PROF")
+                            user1.setRole(Role.PROF);
+                        else if (cb_role.getValue() == "ETUDIANT")
+                            user1.setRole(Role.ETUDIANT);
+                        send_code();
+                        if (verfi==1){serviceuser.Ajouteruser(user1);}
+                        serviceuser serviceuser = new serviceuser();
+                        Parent root = FXMLLoader.load(getClass().getResource("/gui/sharedInterface/login.fxml"));
+                        Scene scene = new Scene(root, 1366, 768);
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        stage.setScene(scene);
+                        stage.show();
 
-                            serviceuser.Ajouteruser(user1);
-                            serviceuser serviceuser = new serviceuser();
-                            Parent root = FXMLLoader.load(getClass().getResource("/gui/sharedInterface/login.fxml"));
-                            Scene scene = new Scene(root, 1366, 768);
-                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            stage.setScene(scene);
-                            stage.show();
-
-                        }else {fx_date_eroor1.setText("!!!date non valide!!!");
-                            fx_erro.setVisible(false);
-                            fx_pswd_eroor.setVisible(false);}
-                 }  else {
+                    }else {fx_date_eroor1.setText("!!!date non valide!!!");
                         fx_erro.setVisible(false);
-                        fx_pswd_eroor.setText("!!!Invalid pasword!!!");}
-                } else {
-                    fx_erro.setText("!!! Email alredy exists . !!!!");
-                }
+                        fx_pswd_eroor.setVisible(false);}
+                }  else {
+                    fx_erro.setVisible(false);
+                    fx_pswd_eroor.setText("!!!Invalid pasword!!!");}
             } else {
-                fx_erro.setText("!!! Invalid email format . !!!!");
+                fx_erro.setText("!!! Email alredy exists . !!!!");
             }
+        } else {
+            fx_erro.setText("!!! Invalid email format . !!!!");
+        }
 
 
     }
@@ -188,7 +194,7 @@ public class SignUpController {
     public void image_add(Event event) {
         FileChooser fc = new FileChooser();
         fc.setInitialDirectory(new File(System.getProperty("user.home") + "\\Desktop"));
-        fc.setTitle("Veuillez choisir l'image");
+        fc.setTitle("Please choose the image");
         fc.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image", "*.jpg", "*.png"),
                 new FileChooser.ExtensionFilter("PNG", "*.png"),
@@ -218,7 +224,40 @@ public class SignUpController {
 
         }
     }
-}
+    void send_code() throws InterruptedException, IOException {
+        verfi=0;
+        String resultat = "";
+        user user3;
+        serviceuser su = new serviceuser();
+        SendMail sm = new SendMail();
+        String code_random = "";
+        String email = tf_mail.getText();
+        user3=su.rechercherUserParEmail(email);
+        if (email == null || email.isEmpty()) {
+            System.out.println("Please complete all fields !");
+            return; // ou toute autre action appropriée
+        } else {
+            if (email.isEmpty()) {
+                System.out.println("Please complete all fields!");
+            } else {//email and id sonts correct
+                code_random = MailController.code_random() ;
+                sm.envoyerMail(email, "Mail Pour Verification", "Voice Votre Code de Verification :" + code_random);
+                resultat = MailController.affichage_box_code(code_random);
+                if ("true".equals(resultat)) {
+                    MailController.information_Box("Correct Code", "Your Code is Correct ");
+                    verfi=1;
+                    this.verification = true;}
+                else  {
+                    MailController.alert_Box("Incorrect code", "You have achieved all your attempts, Try Again Later");
+                    verfi=2;
+                    this.verification = false;
+                }
+
+            }
+        }
+    }}
+
+
 
 
 

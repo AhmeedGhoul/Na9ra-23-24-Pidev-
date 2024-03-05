@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="514.0" stylesheets="@../Rresources/loginDesign.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.TheInformants.controller.SignUpController">
+<AnchorPane prefHeight="720.0" prefWidth="514.0" stylesheets="@../Rresources/loginDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.TheInformants.controller.SignUpController">
    <children>
       <TextField fx:id="tf_nom" layoutX="187.0" layoutY="217.0" prefHeight="31.0" prefWidth="306.0" promptText="nom" styleClass="textfield">
          <font>
@@ -105,7 +105,11 @@
             <Font size="10.0" />
          </font>
       </Label>
-      <ImageView fx:id="image_user" fitHeight="121.0" fitWidth="151.0" layoutX="254.0" layoutY="93.0" onMouseClicked="#image_add" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="image_user" fitHeight="121.0" fitWidth="151.0" layoutX="254.0" layoutY="93.0" onMouseClicked="#image_add" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Rresources/drag-drop.gif" />
+         </image></ImageView>
       <PasswordField fx:id="tf_pass" layoutX="193.0" layoutY="444.0" prefHeight="35.0" prefWidth="298.0" promptText="**************" styleClass="textfield" />
+      <Label fx:id="error" layoutX="68.0" layoutY="597.0" prefHeight="21.0" prefWidth="189.0" />
    </children>
 </AnchorPane>

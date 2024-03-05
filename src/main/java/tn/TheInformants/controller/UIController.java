@@ -430,7 +430,7 @@ public void Dashboard_btn_clicked(){
         }
 
         cours_btn.setOnMouseClicked(e -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/User/CourseUI.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/User/test.fxml"));
             try {
                 Parent p = (Parent) fxmlLoader.load();
                 midlast.getChildren().clear();
@@ -450,7 +450,7 @@ public void Dashboard_btn_clicked(){
             }
         });
         book_btn.setOnMouseClicked(e -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/User/eBookUI.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/User/UIBOOK.fxml"));
             try {
                 Parent p = (Parent) fxmlLoader.load();
                 midlast.getChildren().clear();

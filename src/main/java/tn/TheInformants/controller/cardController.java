@@ -14,13 +14,13 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import tn.TheInformants.entities.user;
 import tn.TheInformants.Enums.Role;
-
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class cardController implements Initializable {
@@ -57,7 +57,7 @@ public class cardController implements Initializable {
     private ImageView fxactif;
     private int actif;
     static user user1 = new user();
-        String t;
+    String t;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -103,7 +103,7 @@ public class cardController implements Initializable {
         }
     }
 
-  @FXML
+    @FXML
     public void modifier_user(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Admin/modifierUI.fxml"));
         Parent root = loader.load();

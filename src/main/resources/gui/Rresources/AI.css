@@ -60,6 +60,17 @@
     -fx-background-insets: 12;
     -fx-background-color: #f8fbff;
 }
+.aaa {
+    -fx-background-radius: 50;
+    -fx-background-color: #f8fbff;
+}
 .shadow-left-menu{
     -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.2),30,0,0,0);
+}
+.transparent-scroll-pane {
+    -fx-background-color: white;
+}
+.yellow-btn{
+    -fx-background-color: #ffc73e; /* Lower opacity */
+
 }

@@ -636,7 +636,7 @@
       </AnchorPane>
       <AnchorPane fx:id="highscore_int" layoutY="9.0" prefHeight="748.0" prefWidth="1133.0" visible="false" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="11.0">
          <children>
-            <AnchorPane layoutX="257.0" layoutY="28.0" prefHeight="686.0" prefWidth="430.0" styleClass="Bg">
+            <AnchorPane layoutX="257.0" layoutY="28.0" prefHeight="686.0" prefWidth="430.0">
                <children>
                   <Label layoutX="148.0" layoutY="25.0" prefHeight="35.0" prefWidth="109.0" text="Highscore">
                      <font>
@@ -654,12 +654,15 @@
                      </graphic>
                   </Button>
                </children>
+               <styleClass>
+                  <String fx:value="Bg" />
+                  <String fx:value="mid-menu2" />
+               </styleClass>
             </AnchorPane>
          </children>
          <styleClass>
             <String fx:value="bg_score" />
             <String fx:value="mid-menu2" />
-            <String fx:value="Bg" />
          </styleClass>
       </AnchorPane>
    </children>
